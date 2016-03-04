@@ -1,1 +1,7 @@
+cmake_minimum_required(VERSION 3.4)
+include_directories(/Volumes/ramdisk/tsx-tools/include)
+find_package (TBB)
+include_directories(${TBB_INCLUDE_DIRS})
 add_executable(HTMHashBuild HTMHashBuild.cpp)
+target_link_libraries(HTMHashBuild ${TBB_LIBRARIES})
+set_property(TARGET HTMHashBuild PROPERTY CXX_STANDARD 14)
