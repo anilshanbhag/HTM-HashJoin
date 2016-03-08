@@ -1,6 +1,7 @@
-cmake_minimum_required(VERSION 3.4)
+cmake_minimum_required(VERSION 3.2)
 include_directories(/Volumes/ramdisk/tsx-tools/include)
 find_package (TBB)
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=native")
 include_directories(${TBB_INCLUDE_DIRS})
 add_executable(HTMHashBuild HTMHashBuild.cpp)
 target_link_libraries(HTMHashBuild ${TBB_LIBRARIES})
