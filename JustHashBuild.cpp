@@ -13,14 +13,15 @@ using namespace tbb;
 #define NUM_PARTITIONS 64
 
 int main(int argc, char* argv[]) {
-  if(argc != 3) {
-    cout << "usage: JustHashBuild $sizeInTuples $probeLength" << endl;
+  if(argc != 4) {
+    cout << "usage: JustHashBuild $sizeInTuples $probeLength $dataDistr" << endl;
     exit(1);
   }
 
   const size_t numberOfThreads = 8;
   const size_t sizeInTuples = atol(argv[1]);
   const size_t probeLength = atol(argv[2]);
+  const string dataDistr = argv[3];
   const size_t partitionSize = sizeInTuples / NUM_PARTITIONS;
 
   cout << "{"
@@ -29,7 +30,7 @@ int main(int argc, char* argv[]) {
        << "\"probeLength\": " << probeLength;
 
   uint32_t tableSize = sizeInTuples;
-  auto input = generate_data("sorted", tableSize, sizeInTuples);
+  auto input = generate_data(dataDistr, tableSize, sizeInTuples);
   auto output = new uint32_t[tableSize]{};
 
   struct timeval before, after;

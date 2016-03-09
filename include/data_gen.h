@@ -15,10 +15,11 @@ uint32_t* generate_data(string dist, uint32_t size_in_tuples, uint32_t distinct_
   uint32_t* input = new uint32_t[size_in_tuples];
   if (dist == "uniform") {
     parallel_for(blocked_range<size_t>(0, size_in_tuples,
-        std::llround(std::ceil(size_in_tuples / 64.0))),
+        size_in_tuples / 64),
         [&input, size_in_tuples, mod_mask](auto range) {
+      uint32_t seed = range.begin();
       for(size_t i = range.begin(); i < range.end(); i++) {
-        input[i] = (rand() & mod_mask) + 1;
+        input[i] = (rand_r(&seed) & mod_mask) + 1;
       }
     });
   } else if (dist == "zipf") {
