@@ -16,11 +16,13 @@ int main(int argc, char* argv[]) {
 		cout << "usage: HTMHashBuild $sizeInTuples $grainsize $transactionSize $probelength" << endl;
 		exit(1);
 	}
+	const size_t numberOfThreads = 8;
 	const size_t sizeInTuples = atol(argv[1]);
 	const size_t grainSize = atol(argv[2]);
-	const size_t transactionsPerGrain = atol(argv[3]);
+	const size_t transactionSize = atol(argv[3]);
 	const size_t probelength = atol(argv[4]);
-	const size_t transactionSize = grainSize / transactionsPerGrain;
+	const size_t transactionsPerGrain = grainSize / transactionSize;
+	const size_t conflictPartitionSize = sizeInTuples / numberOfThreads;
 	if(transactionSize * transactionsPerGrain != grainSize) {
 		cout << "grain not equally divisable by transactionsPerGrain" << endl;
 		exit(1);
@@ -51,33 +53,38 @@ int main(int argc, char* argv[]) {
 								 }
 							 });
 
-	tbb::atomic<size_t> failureHistogram[255] = {};
-
 	struct timeval before, after;
 	gettimeofday(&before, NULL);
 
-	size_t conflictCount = 0;
+	tbb::atomic<size_t> conflictCounts[numberOfThreads] = {};
 	tbb::atomic<size_t> failedTransactionCount{0};
+	tbb::atomic<size_t> conflictPartition = 0;
+
 	parallel_for(blocked_range<size_t>(0, sizeInTuples, grainSize),
-							 [&output, &failureHistogram, transactionSize, probelength, &conflicts, &conflictCount, &input,
-								&conflictsRanges, &failedTransactionCount](auto range) {
+							 [&output, &conflictPartition, transactionSize, conflictPartitionSize, probelength, &conflicts,
+								&conflictCounts, &input, &conflictsRanges,
+								&failedTransactionCount](const auto range) {
+								 auto localConflictCount = 0;
+								 auto localConflictPartition = conflictPartition++;
+								 auto conflictPartitionStart = conflictPartitionSize * localConflictPartition;
 								 for(size_t j = range.begin(); j < range.end(); j += transactionSize) {
 									 auto status = _xbegin();
 									 if(status == _XBEGIN_STARTED) {
 										 for(size_t i = j; i < j + transactionSize; i++) {
 											 int offset = 0;
 											 while(output[input[i]] && offset < probelength)
-												 offset++;
+												 offset++; // we could use quadratic probing by doing <<1
 											 if(offset < probelength)
 												 output[input[i] + offset] = input[i];
 											 else
-												 conflicts[conflictCount++] = input[i];
+												 conflicts[conflictPartitionStart + localConflictCount++] = input[i];
 										 }
 										 _xend();
 									 } else {
 										 conflictsRanges[failedTransactionCount++] = j;
 									 }
 								 }
+								 conflictCounts[localConflictPartition--] += localConflictCount;
 							 });
 	gettimeofday(&after, NULL);
 	std::cout << ", \"hashBuildTimeInMicroseconds\": "
@@ -106,7 +113,7 @@ int main(int argc, char* argv[]) {
 			[](auto a, auto b) { return a + b; });
 
 	auto conflictSum =
-			parallel_deterministic_reduce(blocked_range<size_t>(0, conflictCount, 16), 0ul,
+			parallel_deterministic_reduce(blocked_range<size_t>(0, conflictCounts[0], 16), 0ul,
 																		[&conflicts](auto range, auto init) {
 																			for(size_t i = range.begin(); i < range.end(); i++) {
 																				init += conflicts[i];
@@ -115,7 +122,7 @@ int main(int argc, char* argv[]) {
 																		},
 																		[](auto a, auto b) { return a + b; });
 	cout << ", "
-			 << "\"conflicts\": " << conflictCount;
+			 << "\"conflicts\": " << conflictCounts[0];
 
 	cout << ", "
 			 << "\"failedTransaction\": " << failedTransactionCount;
