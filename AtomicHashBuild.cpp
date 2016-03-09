@@ -48,11 +48,12 @@ int main(int argc, char* argv[]) {
     unsigned int zero = 0;
     for (size_t i = range.begin(); i < range.end(); i += 1) {
       int offset = 0;
-      uint32_t startSlot = input[i] & tableMask;
+      uint32_t startSlot = input[i];
       while (offset < probeLength) {
-        uint32_t prevVal = output[startSlot + offset].load(std::memory_order_relaxed);
+        uint32_t slot = (startSlot + offset) & mask;
+        uint32_t prevVal = output[slot].load(std::memory_order_relaxed);
         if (prevVal == 0) {
-          bool success = output[startSlot + offset].compare_exchange_strong(zero, input[i]);
+          bool success = output[slot].compare_exchange_strong(zero, input[i]);
           if (success) {
             break;
           }
