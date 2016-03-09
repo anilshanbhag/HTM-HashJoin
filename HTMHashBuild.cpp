@@ -1,3 +1,4 @@
+/* vim: set filetype=cpp: */
 #include <iostream>
 #ifdef __APPLE__
 #include <rtm.h>
@@ -9,128 +10,133 @@
 #include <cmath>
 #include <sys/time.h>
 
+#include "include/data_gen.h"
+
 using namespace std;
 using namespace tbb;
+
+#define NUM_PARTITIONS 64
+
 int main(int argc, char* argv[]) {
-	if(argc < 3) {
-		cout << "usage: HTMHashBuild $sizeInTuples $grainsize $transactionSize $probelength" << endl;
-		exit(1);
-	}
-	const size_t numberOfThreads = 8;
-	const size_t sizeInTuples = atol(argv[1]);
-	const size_t grainSize = atol(argv[2]);
-	const size_t transactionSize = atol(argv[3]);
-	const size_t probelength = atol(argv[4]);
-	const size_t transactionsPerGrain = grainSize / transactionSize;
-	const size_t conflictPartitionSize = sizeInTuples / numberOfThreads;
-	if(transactionSize * transactionsPerGrain != grainSize) {
-		cout << "grain not equally divisable by transactionsPerGrain" << endl;
-		exit(1);
-	}
-	cout << "{"
-			 << "\"sizeInTuples\": " << sizeInTuples;
-	cout << ", "
-			 << "\"grainSize\": " << grainSize;
-	cout << ", "
-			 << "\"transactionsPerGrain\": " << transactionsPerGrain;
-	cout << ", "
-			 << "\"transactionSize\": " << transactionSize;
+  if(argc < 3) {
+    cout << "usage: HTMHashBuild $sizeInTuples $transactionSize $probeLength" << endl;
+    exit(1);
+  }
+  const size_t numberOfThreads = 8;
+  const size_t sizeInTuples = atol(argv[1]);
+  const size_t transactionSize = atol(argv[2]);
+  const size_t probeLength = atol(argv[3]);
+  const size_t partitionSize = sizeInTuples / NUM_PARTITIONS;
 
+  cout << "{"
+       << "\"sizeInTuples\": " << sizeInTuples;
+  cout << ", "
+       << "\"transactionSize\": " << transactionSize;
+  cout << ", "
+       << "\"probeLength\": " << probeLength;
 
-	
-	auto input = std::make_unique<int[]>(sizeInTuples);
-	auto output = std::make_unique<int[]>(sizeInTuples);
-	auto conflicts = std::make_unique<int[]>(sizeInTuples);
-	auto conflictsRanges = std::make_unique<int[]>(sizeInTuples);
+  uint32_t tableSize = sizeInTuples;
+  auto input = generate_data("sorted", tableSize, sizeInTuples);
+  auto output = new uint32_t[tableSize]{};
+  auto conflicts = std::make_unique<uint32_t[]>(tableSize);
+  auto conflictsRanges = std::make_unique<uint32_t[]>(tableSize);
 
-	parallel_for(blocked_range<size_t>(0, sizeInTuples, std::llround(std::ceil(sizeInTuples / 64.0))),
-							 [&input, &output, sizeInTuples](auto range) {
-								 unsigned int seed = 12738 * range.begin();
-								 for(size_t i = range.begin(); i < range.end(); i++) {
-									 // input[i] = (rand_r(&seed) % sizeInTuples) + 1;
-									 input[i] = i;
-									 output[0] = 0;
-								 }
-							 });
+  struct timeval before, after;
+  gettimeofday(&before, NULL);
 
-	struct timeval before, after;
-	gettimeofday(&before, NULL);
+  uint32_t<size_t> conflictCounts[NUM_PARTITIONS] = {};
+  tbb::atomic<size_t> failedTransactionCount{0};
+  tbb::atomic<size_t> partitionCounter{0};
 
-	tbb::atomic<size_t> conflictCounts[numberOfThreads] = {};
-	tbb::atomic<size_t> failedTransactionCount{0};
-	tbb::atomic<size_t> conflictPartition = 0;
+  uint32_t tableMask = tableSize - 1;
+  parallel_for(blocked_range<size_t>(0, sizeInTuples, partitionSize),
+      [&output, &conflictPartition, transactionSize, partitionSize,
+      probeLength, &conflicts, &conflictCounts, &input, &conflictsRanges,
+      &failedTransactionCount](const auto range) {
+    auto localConflictCount = 0;
+    auto localPartitionId = partitionCounter++;
+    auto conflictPartitionStart = partitionSize * localPartitionId;
+    for(size_t j = range.begin(); j < range.end(); j += transactionSize) {
+      uint32_t startSlot = input[i] & tableMask;
+      auto status = _xbegin();
+      if(status == _XBEGIN_STARTED) {
+        for(size_t i = j; i < j + transactionSize; i++) {
+          int offset = 0;
+          while(output[startSlot + offset] && offset < probeLength)
+            offset++; // we could use quadratic probing by doing <<1
+          if(offset < probeLength)
+            output[startSlot + offset] = input[i];
+          else
+            conflicts[conflictPartitionStart + localConflictCount++] = input[i];
+        }
+        _xend();
+      } else {
+        conflictsRanges[failedTransactionCount++] = j;
+      }
+    }
+    conflictCounts[localPartitionId] += localConflictCount;
+  });
+  gettimeofday(&after, NULL);
+  std::cout << ", \"hashBuildTimeInMicroseconds\": "
+            << (after.tv_sec * 1000000 + after.tv_usec) -
+                   (before.tv_sec * 1000000 + before.tv_usec);
 
-	parallel_for(blocked_range<size_t>(0, sizeInTuples, grainSize),
-							 [&output, &conflictPartition, transactionSize, conflictPartitionSize, probelength, &conflicts,
-								&conflictCounts, &input, &conflictsRanges,
-								&failedTransactionCount](const auto range) {
-								 auto localConflictCount = 0;
-								 auto localConflictPartition = conflictPartition++;
-								 auto conflictPartitionStart = conflictPartitionSize * localConflictPartition;
-								 for(size_t j = range.begin(); j < range.end(); j += transactionSize) {
-									 auto status = _xbegin();
-									 if(status == _XBEGIN_STARTED) {
-										 for(size_t i = j; i < j + transactionSize; i++) {
-											 int offset = 0;
-											 while(output[input[i]] && offset < probelength)
-												 offset++; // we could use quadratic probing by doing <<1
-											 if(offset < probelength)
-												 output[input[i] + offset] = input[i];
-											 else
-												 conflicts[conflictPartitionStart + localConflictCount++] = input[i];
-										 }
-										 _xend();
-									 } else {
-										 conflictsRanges[failedTransactionCount++] = j;
-									 }
-								 }
-								 conflictCounts[localConflictPartition--] += localConflictCount;
-							 });
-	gettimeofday(&after, NULL);
-	std::cout << ", \"hashBuildTimeInMicroseconds\": "
-						<< (after.tv_sec * 1000000 + after.tv_usec) -
-									 (before.tv_sec * 1000000 + before.tv_usec);
+  auto inputSum = parallel_deterministic_reduce(blocked_range<size_t>(0, sizeInTuples, 1024), 0ul,
+      [&input](auto range, auto init) {
+    for(size_t i = range.begin(); i < range.end(); i++) {
+      init += input[i];
+    }
+    return init;
+  },
+  [](auto a, auto b) { return a + b; });
 
-	auto sum = parallel_deterministic_reduce(blocked_range<size_t>(0, sizeInTuples, 1024), 0ul,
-																					 [&output](auto range, auto init) {
-																						 for(size_t i = range.begin(); i < range.end(); i++) {
-																							 init += output[i];
-																						 }
-																						 return init;
-																					 },
-																					 [](auto a, auto b) { return a + b; });
+  auto sum = parallel_deterministic_reduce(blocked_range<size_t>(0, sizeInTuples, 1024), 0ul,
+      [&output](auto range, auto init) {
+    for(size_t i = range.begin(); i < range.end(); i++) {
+      init += output[i];
+    }
+    return init;
+  },
+  [](auto a, auto b) { return a + b; });
 
-	auto failedTransactionSum = parallel_deterministic_reduce(
-			blocked_range<size_t>(0, failedTransactionCount), 0ul,
-			[&input, &conflictsRanges, transactionSize](auto range, auto init) {
-				for(size_t i = range.begin(); i < range.end(); i++) {
-					for(size_t j = conflictsRanges[i]; j < conflictsRanges[i] + transactionSize; j++) {
-						init += input[j];
-					}
-				}
-				return init;
-			},
-			[](auto a, auto b) { return a + b; });
+  auto failedTransactionSum = parallel_deterministic_reduce(
+      blocked_range<size_t>(0, failedTransactionCount), 0ul,
+      [&input, &conflictsRanges, transactionSize](auto range, auto init) {
+    for(size_t i = range.begin(); i < range.end(); i++) {
+      for(size_t j = conflictsRanges[i]; j < conflictsRanges[i] + transactionSize; j++) {
+        init += input[j];
+      }
+    }
+    return init;
+  },
+  [](auto a, auto b) { return a + b; });
 
-	auto conflictSum =
-			parallel_deterministic_reduce(blocked_range<size_t>(0, conflictCounts[0], 16), 0ul,
-																		[&conflicts](auto range, auto init) {
-																			for(size_t i = range.begin(); i < range.end(); i++) {
-																				init += conflicts[i];
-																			}
-																			return init;
-																		},
-																		[](auto a, auto b) { return a + b; });
-	cout << ", "
-			 << "\"conflicts\": " << conflictCounts[0];
+  auto conflictSum = parallel_deterministic_reduce(
+      blocked_range<size_t>(0, NUM_PARTITIONS, 1), 0ul,
+      [&conflicts, partitionSize](auto range, auto init) {
+    for(size_t i = range.begin(); i < range.end(); i++) {
+      for(int j=partitionSize*i; j<parititionSize*i + conflictCounts[i]; j++) {
+        init += conflicts[j];
+      }
+    }
+    return init;
+  },
+  [](auto a, auto b) { return a + b; });
 
-	cout << ", "
-			 << "\"failedTransaction\": " << failedTransactionCount;
+  int conflictCount = 0;
+  for (int i=0; i<NUM_PARTITIONS; i++) {
+    conflictCount += conflictCounts[i];
+  }
 
-	cout << ", "
-			 << "\"sum\": " << sum + conflictSum + failedTransactionSum;
+  cout << ", "
+       << "\"conflicts\": " << conflictCount;
+  cout << ", "
+       << "\"failedTransaction\": " << failedTransactionCount;
+  cout << ", "
+       << "\"inputSum\": " << inputSum;
+  cout << ", "
+       << "\"sum\": " << sum + conflictSum + failedTransactionSum;
+  cout << "}" << endl;
 
-	cout << "}" << endl;
-
-	return 0;
+  return 0;
 }

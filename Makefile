@@ -15,14 +15,16 @@ else ifeq ($(shell uname), Darwin)
 override CXXFLAGS += -std=c++14 -Wl,-rpath,$(TBBROOT)/lib
 endif
 
-all:	release
+all:	atomic just 
 
-release: AtomicHashBuild.cpp
-	$(CXX) -O2 -DNDEBUG -D_CONSOLE $(CXXFLAGS) -o bin/$(PROG) $^ -ltbb $(LIBS)
+atomic: AtomicHashBuild.cpp
+	$(CXX) -O2 -DNDEBUG -D_CONSOLE $(CXXFLAGS) -o bin/AtomicHashBuild $^ -ltbb $(LIBS)
 
-debug: AtomicHashBuild.cpp
-	$(CXX) -O0 -D_CONSOLE -g -DTBB_USE_DEBUG $(CXXFLAGS) -o bin/$(PROG) $^ -ltbb_debug $(LIBS)
+just: JustHashBuild.cpp
+	$(CXX) -O2 -DNDEBUG -D_CONSOLE $(CXXFLAGS) -o bin/JustHashBuild $^ -ltbb $(LIBS)
 
 clean:
-	rm -f $(PROG) *.o *.d
+	rm -f bin/* *.o *.d
 
+#debug: AtomicHashBuild.cpp
+	#$(CXX) -O0 -D_CONSOLE -g -DTBB_USE_DEBUG $(CXXFLAGS) -o bin/$(PROG) $^ -ltbb_debug $(LIBS)

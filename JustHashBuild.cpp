@@ -1,8 +1,9 @@
+/* vim: set filetype=cpp: */
 #include <iostream>
+#include <tbb/tbb.h>
 #include <memory>
 #include <cmath>
 #include <sys/time.h>
-#include <atomic>
 
 #include "include/data_gen.h"
 
@@ -12,11 +13,12 @@ using namespace tbb;
 #define NUM_PARTITIONS 64
 
 int main(int argc, char* argv[]) {
-  if (argc != 3) {
-    cout << "usage: AtomicHashBuild $sizeInTuples $probeLength" << endl;
+  if(argc != 3) {
+    cout << "usage: JustHashBuild $sizeInTuples $probeLength" << endl;
     exit(1);
   }
 
+  const size_t numberOfThreads = 8;
   const size_t sizeInTuples = atol(argv[1]);
   const size_t probeLength = atol(argv[2]);
   const size_t partitionSize = sizeInTuples / NUM_PARTITIONS;
@@ -28,7 +30,7 @@ int main(int argc, char* argv[]) {
 
   uint32_t tableSize = sizeInTuples;
   auto input = generate_data("sorted", tableSize, sizeInTuples);
-  auto output = new std::atomic<uint32_t>[tableSize]{};
+  auto output = new uint32_t[tableSize]{};
 
   struct timeval before, after;
   gettimeofday(&before, NULL);
@@ -39,34 +41,24 @@ int main(int argc, char* argv[]) {
 
   uint32_t tableMask = tableSize - 1;
   parallel_for(blocked_range<size_t>(0, sizeInTuples, partitionSize),
-      [&output, probeLength, &input, tableMask, &conflicts, &conflictCounts,
-      &partitionCounter, partitionSize](auto range) {
-    uint32_t localConflictCount = 0;
+      [&output, &partitionCounter, partitionSize, tableMask,
+      probeLength, &conflicts, &conflictCounts, &input](const auto range) {
+    auto localConflictCount = 0;
     auto localPartitionId = partitionCounter++;
     auto conflictPartitionStart = partitionSize * localPartitionId;
-    unsigned int zero = 0;
     for (size_t i = range.begin(); i < range.end(); i += 1) {
       int offset = 0;
       uint32_t startSlot = input[i] & tableMask;
-      while (offset < probeLength) {
-        uint32_t prevVal = output[startSlot + offset].load(std::memory_order_relaxed);
-        if (prevVal == 0) {
-          bool success = output[startSlot + offset].compare_exchange_strong(zero, input[i]);
-          if (success) {
-            break;
-          }
-        }
-        offset++;
-      }
-
-      if (offset == probeLength) {
+      while (output[startSlot + offset] && offset < probeLength)
+        offset++; // we could use quadratic probing by doing <<1
+      if (offset < probeLength)
+        output[startSlot + offset] = input[i];
+      else
         conflicts[conflictPartitionStart + localConflictCount++] = input[i];
-      }
     }
 
     conflictCounts[localPartitionId] += localConflictCount;
   });
-
   gettimeofday(&after, NULL);
   std::cout << ", \"hashBuildTimeInMicroseconds\": "
             << (after.tv_sec * 1000000 + after.tv_usec) -
@@ -84,7 +76,7 @@ int main(int argc, char* argv[]) {
   auto sum = parallel_deterministic_reduce(blocked_range<size_t>(0, sizeInTuples, 1024), 0ul,
       [&output](auto range, auto init) {
     for(size_t i = range.begin(); i < range.end(); i++) {
-      init += output[i].load(std::memory_order_relaxed);
+      init += output[i];
     }
     return init;
   },
