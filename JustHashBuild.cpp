@@ -32,13 +32,13 @@ int main(int argc, char* argv[]) {
   uint32_t tableSize = sizeInTuples;
   auto input = generate_data(dataDistr, tableSize, sizeInTuples);
   auto output = new uint32_t[tableSize]{};
+  auto conflicts = std::make_unique<uint32_t[]>(tableSize);
 
   struct timeval before, after;
   gettimeofday(&before, NULL);
 
   uint32_t conflictCounts[NUM_PARTITIONS] = {};
   tbb::atomic<size_t> partitionCounter{0};
-  auto conflicts = std::make_unique<uint32_t[]>(tableSize);
 
   uint32_t tableMask = tableSize - 1;
   parallel_for(blocked_range<size_t>(0, sizeInTuples, partitionSize),
@@ -48,18 +48,25 @@ int main(int argc, char* argv[]) {
     auto localPartitionId = partitionCounter++;
     auto conflictPartitionStart = partitionSize * localPartitionId;
     for (size_t i = range.begin(); i < range.end(); i += 1) {
-      int offset = 0;
-      uint32_t startSlot = input[i];
-      while (output[(startSlot + offset) & mask] && offset < probeLength)
-        offset++; // we could use quadratic probing by doing <<1
-      if (offset < probeLength)
-        output[(startSlot + offset) & mask] = input[i];
-      else
+      uint32_t curSlot = input[i] & tableMask;
+      uint32_t probeBudget = probeLength;
+      while (probeBudget--) {
+        if (output[curSlot] == 0) {
+          output[curSlot] = input[i];
+          break;
+        } else {
+          curSlot += 1; // we could use quadratic probing by doing <<1
+          curSlot &= tableMask;
+        }
+      }
+
+      if (probeBudget == 0)
         conflicts[conflictPartitionStart + localConflictCount++] = input[i];
     }
 
     conflictCounts[localPartitionId] += localConflictCount;
   });
+
   gettimeofday(&after, NULL);
   std::cout << ", \"hashBuildTimeInMicroseconds\": "
             << (after.tv_sec * 1000000 + after.tv_usec) -
