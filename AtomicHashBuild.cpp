@@ -50,7 +50,7 @@ int main(int argc, char* argv[]) {
       int offset = 0;
       uint32_t startSlot = input[i];
       while (offset < probeLength) {
-        uint32_t slot = (startSlot + offset) & mask;
+        uint32_t slot = (startSlot + offset) & tableMask;
         uint32_t prevVal = output[slot].load(std::memory_order_relaxed);
         if (prevVal == 0) {
           bool success = output[slot].compare_exchange_strong(zero, input[i]);

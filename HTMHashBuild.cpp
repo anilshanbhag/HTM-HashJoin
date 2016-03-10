@@ -22,7 +22,6 @@ int main(int argc, char* argv[]) {
 		cout << "usage: HTMHashBuild $sizeInTuples $transactionSize $probeLength $dataDistr" << endl;
 		exit(1);
 	}
-	const size_t numberOfThreads = 8;
 	const size_t sizeInTuples = atol(argv[1]);
 	const size_t transactionSize = atol(argv[2]);
 	const size_t probeLength = atol(argv[3]);
@@ -51,9 +50,10 @@ int main(int argc, char* argv[]) {
 
 	uint32_t tableMask = tableSize - 1;
 	parallel_for(blocked_range<size_t>(0, sizeInTuples, partitionSize),
-							 [&output, &partitionCounter, tableMask, transactionSize, partitionSize, probeLength,
-								&conflicts, &conflictCounts, &input, &conflictsRanges,
+							 [output, &partitionCounter, tableMask, transactionSize, partitionSize, probeLength,
+								&conflicts, &conflictCounts, input, &conflictsRanges,
 								&failedTransactionCount](const auto range) {
+								 unsigned int* localConflictsPtr = conflicts.get();
 								 auto localConflictCount = 0;
 								 auto localPartitionId = partitionCounter++;
 								 auto conflictPartitionStart = partitionSize * localPartitionId;
@@ -68,7 +68,7 @@ int main(int argc, char* argv[]) {
 											 if(offset < probeLength)
 												 output[(startSlot + offset) & tableMask] = input[i];
 											 else
-												 conflicts[conflictPartitionStart + localConflictCount++] = input[i];
+												 localConflictsPtr[conflictPartitionStart + localConflictCount++] = input[i];
 										 }
 										 _xend();
 									 } else {

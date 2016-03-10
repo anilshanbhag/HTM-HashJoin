@@ -50,10 +50,10 @@ int main(int argc, char* argv[]) {
     for (size_t i = range.begin(); i < range.end(); i += 1) {
       int offset = 0;
       uint32_t startSlot = input[i];
-      while (output[(startSlot + offset) & mask] && offset < probeLength)
+      while (output[(startSlot + offset) & tableMask] && offset < probeLength)
         offset++; // we could use quadratic probing by doing <<1
       if (offset < probeLength)
-        output[(startSlot + offset) & mask] = input[i];
+        output[(startSlot + offset) & tableMask] = input[i];
       else
         conflicts[conflictPartitionStart + localConflictCount++] = input[i];
     }
