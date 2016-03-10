@@ -32,17 +32,17 @@ int main(int argc, char* argv[]) {
   uint32_t tableSize = sizeInTuples;
   auto input = generate_data(dataDistr, tableSize, sizeInTuples);
   auto output = new uint32_t[tableSize]{};
-  auto conflicts = std::make_unique<uint32_t[]>(tableSize);
 
   struct timeval before, after;
   gettimeofday(&before, NULL);
 
-  uint32_t conflictCounts[NUM_PARTITIONS] = {};
+  uint32_t* conflicts = new uint32_t[tableSize];
+  uint32_t* conflictCounts = new uint32_t[NUM_PARTITIONS];
 
   uint32_t tableMask = tableSize - 1;
   parallel_for(blocked_range<size_t>(0, sizeInTuples, partitionSize),
-      [&output, partitionSize, tableMask,
-      probeLength, &conflicts, &conflictCounts, &input](const auto range) {
+      [output, partitionSize, tableMask,
+      probeLength, conflicts, conflictCounts, input](const auto range) {
     auto localConflictCount = 0;
     auto localPartitionId = range.begin() / partitionSize;
     auto conflictPartitionStart = partitionSize * localPartitionId;
