@@ -38,25 +38,25 @@ int main(int argc, char* argv[]) {
   gettimeofday(&before, NULL);
 
   uint32_t conflictCounts[NUM_PARTITIONS] = {};
-  tbb::atomic<size_t> partitionCounter{0};
 
   uint32_t tableMask = tableSize - 1;
   parallel_for(blocked_range<size_t>(0, sizeInTuples, partitionSize),
-      [&output, &partitionCounter, partitionSize, tableMask,
+      [&output, partitionSize, tableMask,
       probeLength, &conflicts, &conflictCounts, &input](const auto range) {
     auto localConflictCount = 0;
-    auto localPartitionId = partitionCounter++;
+    auto localPartitionId = range.begin() / partitionSize;
     auto conflictPartitionStart = partitionSize * localPartitionId;
     for (size_t i = range.begin(); i < range.end(); i += 1) {
       uint32_t curSlot = input[i] & tableMask;
       uint32_t probeBudget = probeLength;
-      while (probeBudget--) {
+      while (probeBudget != 0) {
         if (output[curSlot] == 0) {
           output[curSlot] = input[i];
           break;
         } else {
           curSlot += 1; // we could use quadratic probing by doing <<1
           curSlot &= tableMask;
+          probeBudget--;
         }
       }
 
@@ -64,7 +64,7 @@ int main(int argc, char* argv[]) {
         conflicts[conflictPartitionStart + localConflictCount++] = input[i];
     }
 
-    conflictCounts[localPartitionId] += localConflictCount;
+    conflictCounts[localPartitionId] = localConflictCount;
   });
 
   gettimeofday(&after, NULL);
