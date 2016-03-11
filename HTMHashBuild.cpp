@@ -52,7 +52,7 @@ int main(int argc, char* argv[]) {
 	parallel_for(blocked_range<size_t>(0, sizeInTuples, partitionSize),
 							 [output, tableMask, transactionSize, partitionSize, probeLength,
 								conflicts, conflictCounts, input, conflictRanges,
-								conflictRangesCounts](const auto range) {
+								conflictRangeCounts](const auto range) {
 								 uint32_t localConflictCount = 0;
                  uint32_t localConflictRangeCount = 0;
 								 uint32_t localPartitionId = range.begin() / partitionSize;
@@ -111,9 +111,9 @@ int main(int argc, char* argv[]) {
 
 	auto failedTransactionSum = parallel_deterministic_reduce(
 			blocked_range<size_t>(0, NUM_PARTITIONS, 1), 0ul,
-			[&conflictRanges, &conflictRangesCounts, partitionSize](auto range, auto init) {
+			[input, transactionSize, &conflictRanges, &conflictRangeCounts, partitionSize](auto range, auto init) {
 				for(size_t i = range.begin(); i < range.end(); i++) {
-					for(int j = partitionSize * i; j < partitionSize * i + conflictRangesCounts[i]; j++) {
+					for(int j = partitionSize * i; j < partitionSize * i + conflictRangeCounts[i]; j++) {
             for(size_t k = conflictRanges[j]; k < conflictRanges[j] + transactionSize; k++) {
               init += input[k];
             }
@@ -141,10 +141,15 @@ int main(int argc, char* argv[]) {
 		conflictCount += conflictCounts[i];
 	}
 
+	int conflictRangeCount = 0;
+	for(int i = 0; i < NUM_PARTITIONS; i++) {
+		conflictRangeCount += conflictRangeCounts[i];
+	}
+
 	cout << ", "
 			 << "\"conflicts\": " << conflictCount;
 	cout << ", "
-			 << "\"failedTransaction\": " << failedTransactionCount;
+			 << "\"failedTransaction\": " << conflictRangeCount * transactionSize;
 	cout << ", "
 			 << "\"inputSum\": " << inputSum;
 	cout << ", "
