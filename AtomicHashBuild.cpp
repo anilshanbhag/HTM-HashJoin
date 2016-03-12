@@ -34,39 +34,40 @@ int main(int argc, char* argv[]) {
   struct timeval before, after;
   gettimeofday(&before, NULL);
 
-  uint32_t conflictCounts[NUM_PARTITIONS] = {};
-  tbb::atomic<size_t> partitionCounter{0};
-  auto conflicts = std::make_unique<uint32_t[]>(tableSize);
+  uint32_t* conflicts = new uint32_t[tableSize];
+  uint32_t* conflictCounts = new uint32_t[NUM_PARTITIONS];
 
   uint32_t tableMask = tableSize - 1;
   parallel_for(blocked_range<size_t>(0, sizeInTuples, partitionSize),
-      [&output, probeLength, &input, tableMask, &conflicts, &conflictCounts,
-      &partitionCounter, partitionSize](auto range) {
+      [output, probeLength, input, tableMask, conflicts, conflictCounts,
+      partitionSize](auto range) {
     uint32_t localConflictCount = 0;
-    auto localPartitionId = partitionCounter++;
+    auto localPartitionId = range.begin() / partitionSize;
     auto conflictPartitionStart = partitionSize * localPartitionId;
     unsigned int zero = 0;
     for (size_t i = range.begin(); i < range.end(); i += 1) {
-      int offset = 0;
-      uint32_t startSlot = input[i];
-      while (offset < probeLength) {
-        uint32_t slot = (startSlot + offset) & tableMask;
-        uint32_t prevVal = output[slot].load(std::memory_order_relaxed);
+      uint32_t curSlot = input[i] & tableMask;
+      uint32_t probeBudget = probeLength;
+      while (probeBudget != 0) {
+        uint32_t prevVal = output[curSlot].load(std::memory_order_relaxed);
         if (prevVal == 0) {
-          bool success = output[slot].compare_exchange_strong(zero, input[i]);
+          bool success = output[curSlot].compare_exchange_strong(zero, input[i]);
           if (success) {
             break;
           }
+          probeBudget--;
+        } else {
+          curSlot += 1; // we could use quadratic probing by doing <<1
+          curSlot &= tableMask;
+          probeBudget--;
         }
-        offset++;
       }
 
-      if (offset == probeLength) {
+      if (probeBudget == 0)
         conflicts[conflictPartitionStart + localConflictCount++] = input[i];
-      }
     }
 
-    conflictCounts[localPartitionId] += localConflictCount;
+    conflictCounts[localPartitionId] = localConflictCount;
   });
 
   gettimeofday(&after, NULL);
