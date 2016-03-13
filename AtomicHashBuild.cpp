@@ -44,13 +44,13 @@ int main(int argc, char* argv[]) {
     uint32_t localConflictCount = 0;
     auto localPartitionId = range.begin() / partitionSize;
     auto conflictPartitionStart = partitionSize * localPartitionId;
-    unsigned int zero = 0;
     for (size_t i = range.begin(); i < range.end(); i += 1) {
       uint32_t curSlot = input[i] & tableMask;
       uint32_t probeBudget = probeLength;
       while (probeBudget != 0) {
         uint32_t prevVal = output[curSlot].load(std::memory_order_relaxed);
         if (prevVal == 0) {
+	  unsigned int zero = 0;
           bool success = output[curSlot].compare_exchange_strong(zero, input[i]);
           if (success) {
             break;
