@@ -5,13 +5,12 @@
 using namespace std;
 using namespace tbb;
 
-#define LOCAL_SHUFFLE_RANGE 16
-
 //----- Constants -----------------------------------------------------------
 #define  FALSE          0       // Boolean false
 #define  TRUE           1       // Boolean true
 
-uint32_t* generate_data(string dist, uint32_t size_in_tuples, uint32_t distinct_keys) {
+// local_shuffle_range used only by local_shuffle
+uint32_t* generate_data(string dist, uint32_t size_in_tuples, uint32_t distinct_keys, int local_shuffle_range = 16) {
   srand(0);
   uint32_t mod_mask = distinct_keys - 1;
   uint32_t* input = new uint32_t[size_in_tuples];
@@ -61,7 +60,7 @@ uint32_t* generate_data(string dist, uint32_t size_in_tuples, uint32_t distinct_
 
     for(size_t i = 0; i<size_in_tuples - 1; i++) {
       if (!shuffled[i]) {
-        int swap = rand() % min(LOCAL_SHUFFLE_RANGE, (int)(size_in_tuples - i));
+        int swap = rand() % min(local_shuffle_range, (int)(size_in_tuples - i));
         // Only have to mark the entries forward shuffled.
         if (!shuffled[i + swap]) {
           uint32_t temp = input[i];

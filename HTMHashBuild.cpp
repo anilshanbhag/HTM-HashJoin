@@ -18,14 +18,16 @@ using namespace tbb;
 #define NUM_PARTITIONS 64
 
 int main(int argc, char* argv[]) {
-	if(argc != 5) {
-		cout << "usage: HTMHashBuild $sizeInTuples $transactionSize $probeLength $dataDistr" << endl;
+	if(argc < 5) {
+		cout << "usage: HTMHashBuild $sizeInTuples $transactionSize $probeLength $dataDistr $[localShuffleRange]" << endl;
 		exit(1);
 	}
 	const size_t sizeInTuples = atol(argv[1]);
 	const size_t transactionSize = atol(argv[2]);
 	const size_t probeLength = atol(argv[3]);
 	const string dataDistr = argv[4];
+  int localShuffleRange = 16;
+  if (argc == 6) localShuffleRange = atoi(argv[5]);
 	const size_t partitionSize = sizeInTuples / NUM_PARTITIONS;
 
 	cout << "{"
@@ -36,7 +38,7 @@ int main(int argc, char* argv[]) {
 			 << "\"probeLength\": " << probeLength;
 
 	uint32_t tableSize = sizeInTuples;
-	auto input = generate_data(dataDistr, tableSize, sizeInTuples);
+	auto input = generate_data(dataDistr, tableSize, sizeInTuples, localShuffleRange);
 	auto output = new uint32_t[tableSize]{};
 
 	struct timeval before, after;
@@ -145,11 +147,15 @@ int main(int argc, char* argv[]) {
 	for(int i = 0; i < NUM_PARTITIONS; i++) {
 		conflictRangeCount += conflictRangeCounts[i];
 	}
+  int failedTransactions = conflictRangeCount * transactionSize;
+  double failedPercentage = (failedTransactions + conflictCount) / (1.0 * sizeInTuples);
 
 	cout << ", "
 			 << "\"conflicts\": " << conflictCount;
 	cout << ", "
-			 << "\"failedTransaction\": " << conflictRangeCount * transactionSize;
+			 << "\"failedTransaction\": " << failedTransactions;
+	cout << ", "
+			 << "\"failedPercentage\": " << failedPercentage;
 	cout << ", "
 			 << "\"inputSum\": " << inputSum;
 	cout << ", "
