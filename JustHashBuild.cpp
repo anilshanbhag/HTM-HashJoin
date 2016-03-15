@@ -31,6 +31,12 @@ int main(int argc, char* argv[]) {
 
   uint32_t tableSize = sizeInTuples;
   auto input = generate_data(dataDistr, tableSize, sizeInTuples);
+/*  cout<<endl;*/
+  //for (int i=0; i<sizeInTuples; i++) {
+    //cout<<input[i]<<" ";
+  //}
+  /*cout<<endl;*/
+
   auto output = new uint32_t[tableSize]{};
 
   struct timeval before, after;

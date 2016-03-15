@@ -5,6 +5,8 @@
 using namespace std;
 using namespace tbb;
 
+#define LOCAL_SHUFFLE_RANGE 16
+
 //----- Constants -----------------------------------------------------------
 #define  FALSE          0       // Boolean false
 #define  TRUE           1       // Boolean true
@@ -46,6 +48,29 @@ uint32_t* generate_data(string dist, uint32_t size_in_tuples, uint32_t distinct_
     });
 
     random_shuffle(&input[0], &input[size_in_tuples]);
+  } else if (dist == "local_shuffle") {
+    bool* shuffled = new bool[size_in_tuples]{false};
+
+    parallel_for(blocked_range<size_t>(0, size_in_tuples,
+        std::llround(std::ceil(size_in_tuples / 64.0))),
+        [&input, size_in_tuples](auto range) {
+      for(size_t i = range.begin(); i < range.end(); i++) {
+        input[i] = i + 1;
+      }
+    });
+
+    for(size_t i = 0; i<size_in_tuples - 1; i++) {
+      if (!shuffled[i]) {
+        int swap = rand() % min(LOCAL_SHUFFLE_RANGE, (int)(size_in_tuples - i));
+        // Only have to mark the entries forward shuffled.
+        if (!shuffled[i + swap]) {
+          uint32_t temp = input[i];
+          input[i] = input[i+swap];
+          input[i+swap] = temp;
+          shuffled[i+swap] = true;
+        }
+      }
+    }
   }
 
   return input;
