@@ -9,20 +9,35 @@ using namespace tbb;
 #define  FALSE          0       // Boolean false
 #define  TRUE           1       // Boolean true
 
+inline uint32_t murmur( uint32_t h )
+{
+  h ^= h >> 16;
+  h *= 0x85ebca6b;
+  h ^= h >> 13;
+  h *= 0xc2b2ae35;
+  h ^= h >> 16;
+
+  return h;
+}
+
 // local_shuffle_range used only by local_shuffle
 uint32_t* generate_data(string dist, uint32_t size_in_tuples, uint32_t distinct_keys, int local_shuffle_range = 16) {
   srand(0);
   uint32_t mod_mask = distinct_keys - 1;
   uint32_t* input = new uint32_t[size_in_tuples];
   if (dist == "uniform") {
-    parallel_for(blocked_range<size_t>(0, size_in_tuples,
+    /*parallel_for(blocked_range<size_t>(0, size_in_tuples,
         size_in_tuples / 64),
         [&input, size_in_tuples, mod_mask](auto range) {
-      uint32_t seed = range.begin();
+      uint32_t seed = range.begin() + 1;
+      // std::cout<<"Seed "<<seed<<std::endl;
       for(size_t i = range.begin(); i < range.end(); i++) {
         input[i] = (rand_r(&seed) & mod_mask) + 1;
       }
-    });
+    });*/
+    for (int i=0; i<size_in_tuples; i++) {
+      input[i] = (rand() & mod_mask) + 1;
+    }
   } else if (dist == "zipf") {
 /*    rand_val(1);*/
     //for (i=0; i<size_in_tuples; i++)
