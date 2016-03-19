@@ -7,7 +7,6 @@ add_executable(HTMHashBuild HTMHashBuild.cpp)
 target_link_libraries(HTMHashBuild ${TBB_LIBRARIES})
 set_property(TARGET HTMHashBuild PROPERTY CXX_STANDARD 14)
 
-
 add_executable(AtomicHashBuild AtomicHashBuild.cpp)
 set_property(TARGET AtomicHashBuild PROPERTY CXX_STANDARD 14)
 target_link_libraries(AtomicHashBuild ${TBB_LIBRARIES})
@@ -15,3 +14,7 @@ target_link_libraries(AtomicHashBuild ${TBB_LIBRARIES})
 add_executable(JustHashBuild JustHashBuild.cpp)
 set_property(TARGET JustHashBuild PROPERTY CXX_STANDARD 14)
 target_link_libraries(JustHashBuild ${TBB_LIBRARIES})
+
+add_executable(simple simple.cpp)
+set_property(TARGET simple PROPERTY CXX_STANDARD 14)
+target_link_libraries(simple ${TBB_LIBRARIES})
