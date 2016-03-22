@@ -15,12 +15,12 @@ NoCCHashBuild(uint32_t* relR, uint32_t rSize, uint32_t scaleOutput, uint32_t num
   uint32_t inputPartitionSize = rSize / numPartitions;
   uint32_t outputPartitionSize = tableSize / numPartitions;
 
-  struct timeval before, after;
-  gettimeofday(&before, NULL);
-
   uint32_t* output = (uint32_t*) calloc(tableSize, sizeof(uint32_t));
   uint32_t* conflicts = (uint32_t*) malloc(sizeof(uint32_t) * rSize);
   uint32_t* conflictCounts = (uint32_t*) malloc(sizeof(uint32_t) * numPartitions);
+
+  struct timeval before, after;
+  gettimeofday(&before, NULL);
 
   uint32_t tableMask = tableSize - 1;
   parallel_for(blocked_range<size_t>(0, rSize, inputPartitionSize),

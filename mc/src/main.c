@@ -373,7 +373,6 @@ main(int argc, char ** argv)
     }
     else {
         if (cmd_params.local_shuffle_range > 0) {
-          printf("Running Shuffle\n");
           create_relation_pk_lshuffle(&relR, cmd_params.r_size, cmd_params.local_shuffle_range);
         }
         else
@@ -518,7 +517,7 @@ parse_args(int argc, char ** argv, param_t * cmd_params)
         /* getopt_long stores the option index here. */
         int option_index = 0;
 
-        c = getopt_long (argc, argv, "a:n:p:r:s:o:x:y:z:hv",
+        c = getopt_long (argc, argv, "a:n:p:r:s:o:x:y:z:l:hv",
                          long_options, &option_index);
 
         /* Detect the end of the options. */
