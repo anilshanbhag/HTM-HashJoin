@@ -24,11 +24,6 @@ HTMHashBuild(uint32_t* relR, uint32_t rSize, uint32_t transactionSize, uint32_t 
   struct timeval before, after;
   gettimeofday(&before, NULL);
 
-  auto output = new uint32_t[tableSize]{};
-
-  struct timeval before, after;
-  gettimeofday(&before, NULL);
-
   uint32_t* output = (uint32_t*) calloc(tableSize, sizeof(uint32_t));
 
   uint32_t* conflicts = (uint32_t*) malloc(sizeof(uint32_t) * rSize);
@@ -97,7 +92,7 @@ HTMHashBuild(uint32_t* relR, uint32_t rSize, uint32_t transactionSize, uint32_t 
                                            [](auto a, auto b) { return a + b; });
 
   auto failedTransactionSum = parallel_deterministic_reduce(
-      blocked_range<size_t>(0, NUM_PARTITIONS, 1), 0ul,
+      blocked_range<size_t>(0, numPartitions, 1), 0ul,
       [relR, transactionSize, &conflictRanges, &conflictRangeCounts, inputPartitionSize](auto range, auto init) {
         for(size_t i = range.begin(); i < range.end(); i++) {
           for(int j = inputPartitionSize * i; j < inputPartitionSize * i + conflictRangeCounts[i]; j++) {
@@ -112,7 +107,7 @@ HTMHashBuild(uint32_t* relR, uint32_t rSize, uint32_t transactionSize, uint32_t 
 
 
   auto conflictSum = parallel_deterministic_reduce(
-      blocked_range<size_t>(0, NUM_PARTITIONS, 1), 0ul,
+      blocked_range<size_t>(0, numPartitions, 1), 0ul,
       [&conflicts, &conflictCounts, inputPartitionSize](auto range, auto init) {
         for(size_t i = range.begin(); i < range.end(); i++) {
           for(int j = inputPartitionSize * i; j < inputPartitionSize * i + conflictCounts[i]; j++) {
@@ -124,19 +119,19 @@ HTMHashBuild(uint32_t* relR, uint32_t rSize, uint32_t transactionSize, uint32_t 
       [](auto a, auto b) { return a + b; });
 
   int conflictCount = 0;
-  for(int i = 0; i < NUM_PARTITIONS; i++) {
+  for(int i = 0; i < numPartitions; i++) {
     conflictCount += conflictCounts[i];
   }
 
   int conflictRangeCount = 0;
-  for(int i = 0; i < NUM_PARTITIONS; i++) {
+  for(int i = 0; i < numPartitions; i++) {
     conflictRangeCount += conflictRangeCounts[i];
   }
   int failedTransactions = conflictRangeCount * transactionSize;
   double failedPercentage = (failedTransactions + conflictCount) / (1.0 * rSize);
 
   cout << "{"
-       << "\"algo\": \"atomic\"",
+       << "\"algo\": \"htm\"",
   cout << ","
        << "\"rSize\": " << rSize;
   cout << ", "

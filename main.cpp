@@ -7,6 +7,7 @@
 #include <getopt.h>
 
 #include "AtomicHashBuild.hpp"
+#include "HTMHashBuild.hpp"
 #include "NoCCHashBuild.hpp"
 #include "include/DataGen.hpp"
 
@@ -38,7 +39,7 @@ struct param_t {
 void
 parseArgs(int argc, char ** argv, param_t * cmdParams) {
   // TODO: Make this clean using getopt.
-  for (int i=0; i<argc; i++) {
+  for (int i=1; i<argc; i++) {
     if (strcmp(argv[i], "--algo") == 0) {
       cmdParams->algo = argv[i+1];
     } else if (strcmp(argv[i], "--rSize") == 0) {
