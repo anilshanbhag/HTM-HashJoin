@@ -1,5 +1,4 @@
 run_cmd=
-PROG=AtomicHashBuild
 ifneq (,$(shell which icc 2>/dev/null))
 CXX=icc
 endif # icc
@@ -15,13 +14,10 @@ else ifeq ($(shell uname), Darwin)
 override CXXFLAGS += -std=c++14 -Wl,-rpath,$(TBBROOT)/lib
 endif
 
-all:	atomic just 
+all:	main
 
-atomic: AtomicHashBuild.cpp
-	$(CXX) -O2 -DNDEBUG -D_CONSOLE $(CXXFLAGS) -o bin/AtomicHashBuild $^ -ltbb $(LIBS)
-
-just: JustHashBuild.cpp
-	$(CXX) -O2 -DNDEBUG -D_CONSOLE $(CXXFLAGS) -o bin/JustHashBuild $^ -ltbb $(LIBS)
+main: main.cpp
+	$(CXX) -O2 -DNDEBUG -D_CONSOLE $(CXXFLAGS) -o main $^ -ltbb $(LIBS)
 
 clean:
 	rm -f bin/* *.o *.d

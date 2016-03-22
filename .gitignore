@@ -29,3 +29,7 @@
 
 tbb_oss/
 bin/
+
+CMakeCache.txt
+CMakeFiles/
+main
