@@ -21,16 +21,16 @@ HTMHashBuild(uint32_t* relR, uint32_t rSize, uint32_t transactionSize, uint32_t 
   uint32_t inputPartitionSize = rSize / numPartitions;
   uint32_t outputPartitionSize = tableSize / numPartitions;
 
+	uint32_t* output = new uint32_t[tableSize]{};
+
+	uint32_t* conflicts = new uint32_t[rSize]{};
+	uint32_t* conflictCounts = new uint32_t[numPartitions];
+
+	uint32_t* conflictRanges = new uint32_t[rSize];
+	uint32_t* conflictRangeCounts = new uint32_t[numPartitions];
+
   struct timeval before, after;
   gettimeofday(&before, NULL);
-
-  uint32_t* output = (uint32_t*) calloc(tableSize, sizeof(uint32_t));
-
-  uint32_t* conflicts = (uint32_t*) malloc(sizeof(uint32_t) * rSize);
-  uint32_t* conflictCounts = (uint32_t*) malloc(sizeof(uint32_t) * numPartitions);
-
-  uint32_t* conflictRanges = (uint32_t*) malloc(sizeof(uint32_t) * rSize);
-  uint32_t* conflictRangeCounts = (uint32_t*) malloc(sizeof(uint32_t) * numPartitions);
 
   uint32_t tableMask = tableSize - 1;
   parallel_for(blocked_range<size_t>(0, rSize, inputPartitionSize),
@@ -153,9 +153,9 @@ HTMHashBuild(uint32_t* relR, uint32_t rSize, uint32_t transactionSize, uint32_t 
        << "\"outputSum\": " << sum + conflictSum + failedTransactionSum;
   cout << "}" << endl;
 
-  free(output);
-  free(conflicts);
-  free(conflictCounts);
-  free(conflictRanges);
-  free(conflictRangeCounts);
+  delete[] output;
+  delete[] conflicts;
+  delete[] conflictCounts;
+  delete[] conflictRanges;
+  delete[] conflictRangeCounts;
 }
