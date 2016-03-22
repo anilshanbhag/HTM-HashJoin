@@ -156,6 +156,7 @@ int main(int argc, char* argv[]) {
   int failedTransactions = conflictRangeCount * transactionSize;
   double failedPercentage = (failedTransactions + conflictCount) / (1.0 * sizeInTuples);
 
+	double failedTransactionPercentage = round(100000.0*failedTransactions/inputSize)/1000.0;
 	double conflictPercentage = round(100000.0*conflictCount/inputSize)/1000.0;
 	cout << ", "
 			 << "\"conflicts\": " << conflictCount;
@@ -163,6 +164,8 @@ int main(int argc, char* argv[]) {
 			 << "\"failedTransaction\": " << failedTransactions;
 	cout << ", "
 			 << "\"failedPercentage\": " << failedPercentage;
+	cout << ", "
+			 << "\"failedTransactionPercentage\": " << failedTransactionPercentage;
 	cout << ", "
 			 << "\"conflictPercentage\": " << conflictPercentage;
 	cout << ", "
