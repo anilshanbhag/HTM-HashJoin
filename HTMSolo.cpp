@@ -27,11 +27,19 @@ int main(int argc, char* argv[]) {
 	const size_t probeLength = atol(argv[3]);
 	const string dataDistr = argv[4];
 	const size_t partitionSize = sizeInTuples / NUM_PARTITIONS;
+	int localShuffleRange = 16;
+	if(argc == 6)
+		localShuffleRange = atoi(argv[5]);
+	uint32_t inputPartitionSize = inputSize / NUM_PARTITIONS;
 
 	cout << "{"
 			 << "\"sizeInTuples\": " << sizeInTuples;
 	cout << ", "
 			 << "\"transactionSize\": " << transactionSize;
+	cout << ", "
+			 << "\"localShuffleRange\": " << localShuffleRange;
+	cout << ", "
+			 << "\"numberOfPartitions\": " << NUM_PARTITIONS;
 	cout << ", "
 			 << "\"probeLength\": " << probeLength;
 
@@ -148,12 +156,15 @@ int main(int argc, char* argv[]) {
   int failedTransactions = conflictRangeCount * transactionSize;
   double failedPercentage = (failedTransactions + conflictCount) / (1.0 * sizeInTuples);
 
+	double conflictPercentage = round(100000.0*conflictCount/inputSize)/1000.0;
 	cout << ", "
 			 << "\"conflicts\": " << conflictCount;
 	cout << ", "
 			 << "\"failedTransaction\": " << failedTransactions;
 	cout << ", "
 			 << "\"failedPercentage\": " << failedPercentage;
+	cout << ", "
+			 << "\"conflictPercentage\": " << conflictPercentage;
 	cout << ", "
 			 << "\"inputSum\": " << inputSum;
 	cout << ", "
