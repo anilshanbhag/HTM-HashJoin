@@ -11,6 +11,8 @@
 #include <cmath>
 #include <sys/time.h>
 
+#define TM_TRACK 0
+
 using namespace std;
 using namespace tbb;
 
@@ -21,13 +23,17 @@ HTMHashBuild(uint32_t* relR, uint32_t rSize, uint32_t transactionSize, uint32_t 
   uint32_t inputPartitionSize = rSize / numPartitions;
   uint32_t outputPartitionSize = tableSize / numPartitions;
 
-	uint32_t* output = new uint32_t[tableSize]{};
+  uint32_t* output = new uint32_t[tableSize]{};
 
-	uint32_t* conflicts = new uint32_t[rSize]{};
-	uint32_t* conflictCounts = new uint32_t[numPartitions];
+  uint32_t* conflicts = new uint32_t[rSize]{};
+  uint32_t* conflictCounts = new uint32_t[numPartitions];
 
-	uint32_t* conflictRanges = new uint32_t[rSize];
-	uint32_t* conflictRangeCounts = new uint32_t[numPartitions];
+  uint32_t* conflictRanges = new uint32_t[rSize];
+  uint32_t* conflictRangeCounts = new uint32_t[numPartitions];
+
+#if TM_TRACK
+  tbb::atomic<int> b1=0,b2=0,b3=0,b4=0,b5=0,b6=0,b7=0, b8=0;
+#endif // TM_TRACK
 
   struct timeval before, after;
   gettimeofday(&before, NULL);
@@ -36,6 +42,9 @@ HTMHashBuild(uint32_t* relR, uint32_t rSize, uint32_t transactionSize, uint32_t 
   parallel_for(blocked_range<size_t>(0, rSize, inputPartitionSize),
                [output, tableMask, transactionSize, inputPartitionSize, probeLength,
                 conflicts, conflictCounts, relR, conflictRanges,
+#if TM_TRACK
+                &b1, &b2, &b3, &b4, &b5, &b6, &b7, &b8,
+#endif
                 conflictRangeCounts, outputPartitionSize](const auto range) {
                  uint32_t localConflictCount = 0;
                  uint32_t localConflictRangeCount = 0;
@@ -64,6 +73,16 @@ HTMHashBuild(uint32_t* relR, uint32_t rSize, uint32_t transactionSize, uint32_t 
                      _xend();
                    } else {
                      conflictRanges[conflictPartitionStart + localConflictRangeCount++] = j;
+#if TM_TRACK
+                    if (status == _XABORT_EXPLICIT) b1 += 1;
+                     else if (status == _XABORT_RETRY) b2 += 1;
+                     else if (status == _XABORT_CONFLICT) b3 += 1;
+                     else if (status == _XABORT_CAPACITY) b4 += 1;
+                     else if (status == _XABORT_DEBUG) b5 += 1;
+                     else if (status == _XABORT_NESTED) b6 += 1;
+                     else if (status == _XBEGIN_STARTED) b7 += 1;
+                     else b8 += 1;
+#endif // TRACK_CONFLICT
                    }
                  }
                  conflictCounts[localPartitionId] = localConflictCount;
@@ -128,6 +147,7 @@ HTMHashBuild(uint32_t* relR, uint32_t rSize, uint32_t transactionSize, uint32_t 
     conflictRangeCount += conflictRangeCounts[i];
   }
   int failedTransactions = conflictRangeCount * transactionSize;
+  double failedTransactionPercentage = (failedTransactions) / (1.0 * rSize);
   double failedPercentage = (failedTransactions + conflictCount) / (1.0 * rSize);
 
   cout << "{"
@@ -142,16 +162,22 @@ HTMHashBuild(uint32_t* relR, uint32_t rSize, uint32_t transactionSize, uint32_t 
        << (after.tv_sec * 1000000 + after.tv_usec) -
                (before.tv_sec * 1000000 + before.tv_usec);
   cout << ", "
-       << "\"conflicts\": " << conflictCount;
+       << "\"conflictCount\": " << conflictCount;
   cout << ", "
        << "\"failedTransactions\": " << failedTransactions;
   cout << ", "
-       << "\"failedTransactionPercentage\": " << failedPercentage;
+       << "\"failedTransactionPercentage\": " << failedTransactionPercentage;
+  cout << ", "
+       << "\"totalFailedPercentage\": " << failedPercentage;
   cout << ", "
        << "\"inputSum\": " << inputSum;
   cout << ", "
        << "\"outputSum\": " << sum + conflictSum + failedTransactionSum;
   cout << "}" << endl;
+
+#if TM_TRACK
+  printf("Conflict Reason: %d %d %d %d %d %d %d %d\n", b1, b2, b3, b4, b5, b6, b7, b8);
+#endif //TM_TRACK
 
   delete[] output;
   delete[] conflicts;
