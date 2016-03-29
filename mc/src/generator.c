@@ -99,7 +99,7 @@ lshuffle(relation_t * relation, int local_shuffle_range)
     int i;
     for (i = 0; i < relation->num_tuples; i++) {
         int32_t runway = relation->num_tuples - i;
-        int32_t mod = runway > relation->num_tuples ? relation->num_tuples : runway;
+        int32_t mod = runway > local_shuffle_range ? local_shuffle_range : runway;
         int32_t swap = rand() % mod;
         int32_t  j              = i + swap;
         intkey_t tmp            = relation->tuples[i].key;
