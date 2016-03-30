@@ -11,13 +11,17 @@
 #include <cmath>
 #include <sys/time.h>
 
-#define TM_TRACK 0
+#include "config.h"
 
 using namespace std;
 using namespace tbb;
 
 void
-HTMHashBuild(uint32_t* relR, uint32_t rSize, uint32_t transactionSize, uint32_t scaleOutput, uint32_t numPartitions,
+HTMHashBuild(uint32_t* relR, uint32_t rSize,
+#if ENABLE_PROBE
+    uint32_t* relS, uint32_t sSize,
+#endif
+    uint32_t transactionSize, uint32_t scaleOutput, uint32_t numPartitions,
     uint32_t probeLength) {
   uint32_t tableSize = rSize*2;
   uint32_t inputPartitionSize = rSize / numPartitions;
@@ -26,10 +30,14 @@ HTMHashBuild(uint32_t* relR, uint32_t rSize, uint32_t transactionSize, uint32_t 
   uint32_t* output = new uint32_t[tableSize]{};
 
   uint32_t* conflicts = new uint32_t[rSize]{};
-  uint32_t* conflictCounts = new uint32_t[numPartitions];
+  uint32_t* conflictCounts = new uint32_t[numPartitions]{};
 
-  uint32_t* conflictRanges = new uint32_t[rSize];
-  uint32_t* conflictRangeCounts = new uint32_t[numPartitions];
+  uint32_t* conflictRanges = new uint32_t[rSize]{};
+  uint32_t* conflictRangeCounts = new uint32_t[numPartitions]{};
+
+#if ENABLE_PROBE
+  uint32_t* matchCounter = new uint32_t[numPartitions];
+#endif // ENABLE_PROBE
 
 #if TM_TRACK
   tbb::atomic<int> b1=0,b2=0,b3=0,b4=0,b5=0,b6=0,b7=0, b8=0;
@@ -89,6 +97,46 @@ HTMHashBuild(uint32_t* relR, uint32_t rSize, uint32_t transactionSize, uint32_t 
                  conflictRangeCounts[localPartitionId] = localConflictRangeCount;
                });
 
+#if TM_RETRY
+  for (int i=0; i<numPartitions, i++) {
+    for (int j=inputPartitionSize*i; j<inputPartitionSize*i + conflictRangeCounts[i]; j++) {
+      for(size_t k = conflictRanges[j]; k < conflictRanges[j] + transactionSize; k++) {
+        uint32_t curSlot = relR[k] & tableMask;
+        uint32_t probeBudget = probeLength;
+        while (probeBudget != 0) {
+          if (output[curSlot] == 0) {
+            output[curSlot] = relR[k];
+            break;
+          } else {
+            curSlot += 1; // we could use quadratic probing by doing <<1
+            curSlot &= tableMask;
+            probeBudget--;
+          }
+        }
+
+        if (probeBudget == 0)
+         conflicts[conflictPartitionStart + localConflictCount++] = relR[i];
+      }
+    }
+  }
+#endif // TM_RETRY
+
+#if ENABLE_PROBE
+  uint32_t sPartitionSize = sSize/numPartitions;
+  parallel_for(blocked_range<size_t>(0, sSize, sPartitionSize),
+               [relS, matchCounter, sPartitionSize, tableMask](auto range, auto init) {
+                 uint32_t pId = range.begin() / sPartitionSize;
+                 uint32_t matches = 0;
+                 for(size_t i = range.begin(); i< range.end(); i++) {
+                   uint32_t curSlot = relS[i] & tableMask;
+                   uint32_t probeBudget = probeLength;
+                   while(probeBudget-- && output[curSlot] != 0) {
+                     if (output[curSlot] == relS[i]) matches++;
+                   }
+                 }
+                 matchCounter[pId] = matches;
+               }
+#endif // ENABLE_PROBE
   gettimeofday(&after, NULL);
 
   auto inputSum =
@@ -110,6 +158,8 @@ HTMHashBuild(uint32_t* relR, uint32_t rSize, uint32_t transactionSize, uint32_t 
                                            },
                                            [](auto a, auto b) { return a + b; });
 
+
+#if TM_RETRY == 0
   auto failedTransactionSum = parallel_deterministic_reduce(
       blocked_range<size_t>(0, numPartitions, 1), 0ul,
       [relR, transactionSize, &conflictRanges, &conflictRangeCounts, inputPartitionSize](auto range, auto init) {
@@ -123,7 +173,9 @@ HTMHashBuild(uint32_t* relR, uint32_t rSize, uint32_t transactionSize, uint32_t 
         return init;
       },
       [](auto a, auto b) { return a + b; });
-
+#else
+  uint64_t failedTransactionSum = 0;
+#endif
 
   auto conflictSum = parallel_deterministic_reduce(
       blocked_range<size_t>(0, numPartitions, 1), 0ul,
@@ -146,6 +198,14 @@ HTMHashBuild(uint32_t* relR, uint32_t rSize, uint32_t transactionSize, uint32_t 
   for(int i = 0; i < numPartitions; i++) {
     conflictRangeCount += conflictRangeCounts[i];
   }
+
+#if ENABLE_PROBE
+  int totalMatches = 0;
+  for (int i=0; i<numPartitions; i++) {
+    totalMatches += matchCounter[i];
+  }
+#endif //ENABLE_PROBE
+
   int failedTransactions = conflictRangeCount * transactionSize;
   double failedTransactionPercentage = (failedTransactions) / (1.0 * rSize);
   double failedPercentage = (failedTransactions + conflictCount) / (1.0 * rSize);
@@ -169,6 +229,10 @@ HTMHashBuild(uint32_t* relR, uint32_t rSize, uint32_t transactionSize, uint32_t 
        << "\"failedTransactionPercentage\": " << failedTransactionPercentage;
   cout << ", "
        << "\"totalFailedPercentage\": " << failedPercentage;
+#if ENABLE_PROBE
+  cout << ", "
+       << "\"totalMatches\": " << totalMatches;
+#endif
   cout << ", "
        << "\"inputSum\": " << inputSum;
   cout << ", "

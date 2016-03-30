@@ -6,6 +6,7 @@
 #include <atomic>
 #include <getopt.h>
 
+#include "config.h"
 #include "AtomicHashBuild.hpp"
 #include "HTMHashBuild.hpp"
 #include "NoCCHashBuild.hpp"
@@ -82,6 +83,22 @@ main(int argc, char* argv[]) {
 
   parseArgs(argc, argv, &cmdParams);
 
+#if ENABLE_PROBE
+  uint32_t* relR = generate_data(cmdParams.dataDistr, cmdParams.rSize, cmdParams.rSize, cmdParams.shuffleRange);
+  uint32_t* relS = generate_data("sorted", cmdParams.rSize, cmdParams.rSize, cmdParams.shuffleRange);
+
+  if (cmdParams.algo == "atomic")
+    AtomicHashBuild(relR, cmdParams.rSize, relS, cmdParams.rSize, cmdParams.scaleOutput, cmdParams.numPartitions, cmdParams.probeLength);
+  else if (cmdParams.algo == "htm")
+    HTMHashBuild(relR, cmdParams.rSize, relS, cmdParams.rSize, cmdParams.transactionSize, cmdParams.scaleOutput, cmdParams.numPartitions, cmdParams.probeLength);
+  else if (cmdParams.algo == "nocc")
+    NoCCHashBuild(relR, cmdParams.rSize, relS, cmdParams.rSize, cmdParams.scaleOutput, cmdParams.numPartitions, cmdParams.probeLength);
+  else
+    cout<<"Unknown Algo: "<<cmdParams.algo<<endl;
+
+  free(relR);
+  free(relS);
+#else
   uint32_t* relR = generate_data(cmdParams.dataDistr, cmdParams.rSize, cmdParams.rSize, cmdParams.shuffleRange);
 
   if (cmdParams.algo == "atomic")
@@ -94,5 +111,7 @@ main(int argc, char* argv[]) {
     cout<<"Unknown Algo: "<<cmdParams.algo<<endl;
 
   free(relR);
+#endif
+
   return 0;
 }

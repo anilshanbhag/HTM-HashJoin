@@ -6,19 +6,29 @@
 #include <sys/time.h>
 #include <atomic>
 
+#include "config.h"
+
 using namespace std;
 using namespace tbb;
 
 void
-AtomicHashBuild(uint32_t* relR, uint32_t rSize, uint32_t scaleOutput, uint32_t numPartitions,
+AtomicHashBuild(uint32_t* relR, uint32_t rSize,
+#if ENABLE_PROBE
+    uint32_t* relS, uint32_t sSize,
+#endif
+    uint32_t scaleOutput, uint32_t numPartitions,
     uint32_t probeLength) {
   uint32_t tableSize = rSize*2;
   uint32_t inputPartitionSize = rSize / numPartitions;
   uint32_t outputPartitionSize = tableSize / numPartitions;
 
   auto output = new std::atomic<uint32_t>[tableSize]{};
-  uint32_t* conflictCounts = (uint32_t*) malloc(sizeof(uint32_t) * numPartitions);
-  uint32_t* conflicts = (uint32_t*) malloc(sizeof(uint32_t) * tableSize);
+  uint32_t* conflicts = new uint32_t[rSize]{};
+  uint32_t* conflictCounts = new uint32_t[numPartitions]{};
+
+#if ENABLE_PROBE
+  uint32_t* matchCounter = new uint32_t[numPartitions]{};
+#endif // ENABLE_PROBE
 
   struct timeval before, after;
   gettimeofday(&before, NULL);
@@ -55,6 +65,23 @@ AtomicHashBuild(uint32_t* relR, uint32_t rSize, uint32_t scaleOutput, uint32_t n
 
     conflictCounts[localPartitionId] = localConflictCount;
   });
+
+#if ENABLE_PROBE
+  uint32_t sPartitionSize = sSize/numPartitions;
+  parallel_for(blocked_range<size_t>(0, sSize, sPartitionSize),
+               [relS, matchCounter, sPartitionSize, tableMask](auto range, auto init) {
+                 uint32_t pId = range.begin() / sPartitionSize;
+                 uint32_t matches = 0;
+                 for(size_t i = range.begin(); i< range.end(); i++) {
+                   uint32_t curSlot = relS[i] & tableMask;
+                   uint32_t probeBudget = probeLength;
+                   while(probeBudget-- && output[curSlot] != 0) {
+                     if (output[curSlot] == relS[i]) matches++;
+                   }
+                 }
+                 matchCounter[pId] = matches;
+               }
+#endif // ENABLE_PROBE
 
   gettimeofday(&after, NULL);
 
@@ -94,6 +121,13 @@ AtomicHashBuild(uint32_t* relR, uint32_t rSize, uint32_t scaleOutput, uint32_t n
     conflictCount += conflictCounts[i];
   }
 
+#if ENABLE_PROBE
+  int totalMatches = 0;
+  for (int i=0; i<numPartitions; i++) {
+    totalMatches += matchCounter[i];
+  }
+#endif //ENABLE_PROBE
+
   cout << "{"
        << "\"algo\": \"atomic\"",
   cout << ","
@@ -105,13 +139,17 @@ AtomicHashBuild(uint32_t* relR, uint32_t rSize, uint32_t scaleOutput, uint32_t n
                (before.tv_sec * 1000000 + before.tv_usec);
   cout << ", "
        << "\"conflicts\": " << conflictCount;
+#if ENABLE_PROBE
+  cout << ", "
+       << "\"totalMatches\": " << totalMatches;
+#endif
   cout << ", "
        << "\"inputSum\": " << inputSum;
   cout << ", "
        << "\"outputSum\": " << sum + conflictSum;
   cout << "}" << endl;
 
-  free(conflicts);
-  free(conflictCounts);
+  delete[] conflicts;
+  delete[] conflictCounts;
   delete[] output;
 }
