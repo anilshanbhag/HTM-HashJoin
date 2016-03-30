@@ -82,14 +82,13 @@ HTMHashBuild(uint32_t* relR, uint32_t rSize,
                    } else {
                      conflictRanges[conflictPartitionStart + localConflictRangeCount++] = j;
 #if TM_TRACK
-                    if (status == _XABORT_EXPLICIT) b1 += 1;
-                     else if (status == _XABORT_RETRY) b2 += 1;
-                     else if (status == _XABORT_CONFLICT) b3 += 1;
-                     else if (status == _XABORT_CAPACITY) b4 += 1;
-                     else if (status == _XABORT_DEBUG) b5 += 1;
-                     else if (status == _XABORT_NESTED) b6 += 1;
-                     else if (status == _XBEGIN_STARTED) b7 += 1;
-                     else b8 += 1;
+                    if (status & _XABORT_EXPLICIT) b1 += 1;
+                    if (status & _XABORT_RETRY) b2 += 1;
+                    if (status & _XABORT_CONFLICT) b3 += 1;
+                    if (status & _XABORT_CAPACITY) b4 += 1;
+                    if (status & _XABORT_DEBUG) b5 += 1;
+                    if (status & _XABORT_NESTED) b6 += 1;
+                    if (! (status & 0x3f)) b7 += 1;
 #endif // TRACK_CONFLICT
                    }
                  }
