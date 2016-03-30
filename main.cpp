@@ -8,7 +8,7 @@
 
 #include "config.h"
 #include "AtomicHashBuild.hpp"
-#include "HTMHashBuild.hpp"
+#include "HTMAdaptive.hpp"
 #include "NoCCHashBuild.hpp"
 #include "include/DataGen.hpp"
 

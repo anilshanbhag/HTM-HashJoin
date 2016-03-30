@@ -69,15 +69,16 @@ AtomicHashBuild(uint32_t* relR, uint32_t rSize,
 #if ENABLE_PROBE
   uint32_t sPartitionSize = sSize/numPartitions;
   parallel_for(blocked_range<size_t>(0, sSize, sPartitionSize),
-               [relS, matchCounter, sPartitionSize, tableMask, probeLength, output]
-               (auto range) {
+               [relS, matchCounter, sPartitionSize, tableMask, probeLength, output](auto range) {
                  uint32_t pId = range.begin() / sPartitionSize;
                  uint32_t matches = 0;
                  for(size_t i = range.begin(); i< range.end(); i++) {
                    uint32_t curSlot = relS[i] & tableMask;
                    uint32_t probeBudget = probeLength;
                    while(probeBudget-- && output[curSlot] != 0) {
-                     if (output[curSlot] == relS[i]) matches++;
+                     if (output[curSlot] == relS[i]) {matches++; curSlot++;}
+                     else if (output[curSlot] != 0) curSlot++;
+                     else break;
                    }
                  }
                  matchCounter[pId] = matches;

@@ -60,7 +60,7 @@ HTMHashBuild(uint32_t* relR, uint32_t rSize,
                  uint32_t conflictPartitionStart = inputPartitionSize * localPartitionId;
                  // Initialize tSize to transactionSize.
                  uint32_t tSize = transactionSize;
-                 for(size_t k = range.begin(); k < range.end; j += 16384) {
+                 for(size_t k = range.begin(); k < range.end(); k += 16384) {
                    uint32_t total = 16384 / tSize;
                    uint32_t prevConflictRangeCount = localConflictRangeCount;
                    for(size_t j = k; j < k + 16384; j += tSize) {
@@ -104,15 +104,19 @@ HTMHashBuild(uint32_t* relR, uint32_t rSize,
                    double failureFraction = (localConflictRangeCount - prevConflictRangeCount);
                    failureFraction /= total;
 
-                   if (failureFraction < 0.001) transactionSize = min(transactionSize * 2, 32);
-                   else if (failureFraction > 0.015) transactionSize = max(transactionSize / 2, 1);
+                   if (failureFraction < 0.004) tSize = tSize > 16 ? 32: tSize * 2;
+                   else if (failureFraction > 0.020) tSize = tSize > 2? tSize / 2: 1;
                  }
                  conflictCounts[localPartitionId] = localConflictCount;
                  conflictRangeCounts[localPartitionId] = localConflictRangeCount;
+
+                 // cout<<"TSize "<<tSize<<endl;
                });
 
 #if TM_RETRY
-  for (int i=0; i<numPartitions, i++) {
+  for (int i=0; i<numPartitions; i++) {
+    uint32_t conflictPartitionStart = inputPartitionSize * i;
+    uint32_t localConflictCount = conflictCounts[i];
     for (int j=inputPartitionSize*i; j<inputPartitionSize*i + conflictRangeCounts[i]; j++) {
       uint64_t entry = conflictRanges[j];
       uint64_t start = entry >> 32;
@@ -141,18 +145,22 @@ HTMHashBuild(uint32_t* relR, uint32_t rSize,
 #if ENABLE_PROBE
   uint32_t sPartitionSize = sSize/numPartitions;
   parallel_for(blocked_range<size_t>(0, sSize, sPartitionSize),
-               [relS, matchCounter, sPartitionSize, tableMask](auto range, auto init) {
+               [relS, matchCounter, sPartitionSize, tableMask, probeLength, output](auto range) {
                  uint32_t pId = range.begin() / sPartitionSize;
                  uint32_t matches = 0;
                  for(size_t i = range.begin(); i< range.end(); i++) {
                    uint32_t curSlot = relS[i] & tableMask;
                    uint32_t probeBudget = probeLength;
-                   while(probeBudget-- && output[curSlot] != 0) {
-                     if (output[curSlot] == relS[i]) matches++;
+                   while(probeBudget--) {
+                     if (output[curSlot] == relS[i]) {matches++; curSlot++;}
+                     else if (output[curSlot] != 0) curSlot++;
+                     else break;
+                     // matches += (output[curSlot] == relS[i]);
+                     // curSlot++;
                    }
                  }
                  matchCounter[pId] = matches;
-               }
+               });
 #endif // ENABLE_PROBE
   gettimeofday(&after, NULL);
 
@@ -214,10 +222,19 @@ HTMHashBuild(uint32_t* relR, uint32_t rSize,
     conflictCount += conflictCounts[i];
   }
 
-  int conflictRangeCount = 0;
-  for(int i = 0; i < numPartitions; i++) {
-    conflictRangeCount += conflictRangeCounts[i];
-  }
+  uint32_t failedTransactions = parallel_deterministic_reduce(
+      blocked_range<size_t>(0, numPartitions, 1), 0ul,
+      [relR, &conflictRanges, &conflictRangeCounts, inputPartitionSize](auto range, auto init) {
+        for(size_t i = range.begin(); i < range.end(); i++) {
+          for(int j = inputPartitionSize * i; j < inputPartitionSize * i + conflictRangeCounts[i]; j++) {
+            uint64_t entry = conflictRanges[j];
+            uint64_t tSize = ((entry << 32) >> 32);
+            init += tSize;
+          }
+        }
+        return init;
+      },
+      [](auto a, auto b) { return a + b; });
 
 #if ENABLE_PROBE
   int totalMatches = 0;
@@ -226,7 +243,6 @@ HTMHashBuild(uint32_t* relR, uint32_t rSize,
   }
 #endif //ENABLE_PROBE
 
-  int failedTransactions = conflictRangeCount * transactionSize;
   double failedTransactionPercentage = (failedTransactions) / (1.0 * rSize);
   double failedPercentage = (failedTransactions + conflictCount) / (1.0 * rSize);
 
