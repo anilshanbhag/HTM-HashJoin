@@ -98,7 +98,9 @@ HTMHashBuild(uint32_t* relR, uint32_t rSize,
                });
 
 #if TM_RETRY
-  for (int i=0; i<numPartitions, i++) {
+  for (int i=0; i<numPartitions; i++) {
+    uint32_t conflictPartitionStart = inputPartitionSize * i;
+    uint32_t localConflictCount = conflictCounts[i];
     for (int j=inputPartitionSize*i; j<inputPartitionSize*i + conflictRangeCounts[i]; j++) {
       for(size_t k = conflictRanges[j]; k < conflictRanges[j] + transactionSize; k++) {
         uint32_t curSlot = relR[k] & tableMask;
@@ -118,6 +120,7 @@ HTMHashBuild(uint32_t* relR, uint32_t rSize,
          conflicts[conflictPartitionStart + localConflictCount++] = relR[i];
       }
     }
+    conflictCounts[i] = localConflictCount;
   }
 #endif // TM_RETRY
 

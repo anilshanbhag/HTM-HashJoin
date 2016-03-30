@@ -39,7 +39,7 @@ AtomicHashBuild(uint32_t* relR, uint32_t rSize,
       inputPartitionSize, outputPartitionSize](auto range) {
     uint32_t localConflictCount = 0;
     auto localPartitionId = range.begin() / inputPartitionSize;
-    auto conflictPartitionStart = outputPartitionSize * localPartitionId;
+    auto conflictPartitionStart = inputPartitionSize * localPartitionId;
     for (size_t i = range.begin(); i < range.end(); i += 1) {
       uint32_t curSlot = relR[i] & tableMask;
       uint32_t probeBudget = probeLength;
