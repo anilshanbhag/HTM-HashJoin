@@ -31,3 +31,15 @@ for i in `seq 0 27`
 do
   pl $HTM --algo htm --rSize $((2**27)) --probeLength 4 --transactionSize 32 --dataDistr local_shuffle --shuffleRange $((2**i))
 done
+
+# Run HTM
+for i in `seq 0 27`
+do
+  pl $HTM --algo htm --rSize $((2**27)) --probeLength 4 --transactionSize 64 --dataDistr local_shuffle --shuffleRange $((2**i))
+done
+
+# Run HTM
+for i in `seq 0 27`
+do
+  pl $HTM --algo htm --rSize $((2**27)) --probeLength 4 --transactionSize 128 --dataDistr local_shuffle --shuffleRange $((2**i))
+done
