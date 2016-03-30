@@ -11,8 +11,9 @@
 #include <memory>
 #include <cmath>
 #include <sys/time.h>
+#include <cstring>
 
-#define TM_TRACK 0
+#define TM_TRACK 1
 
 using namespace std;
 using namespace tbb;
@@ -30,18 +31,24 @@ HTMHashBuild(uint32_t* relR, uint32_t rSize, uint32_t transactionSize, uint32_t 
     uint32_t probeLength) {
   uint32_t numBuckets = rSize / 4;
   uint32_t inputPartitionSize = rSize / numPartitions;
-  uint32_t outputPartitionSize = tableSize / numPartitions;
 
   /* allocate hashtable buckets cache line aligned */
   Bucket* buckets;
   if (posix_memalign((void**)&buckets, CACHE_LINE_SIZE,
-                     (rSize / 4) * sizeof(Bucket))){
+                     numBuckets * sizeof(Bucket))){
       perror("Aligned allocation failed!\n");
       exit(EXIT_FAILURE);
   }
+  memset(buckets, 0, numBuckets * sizeof(Bucket));
+
+  cout<<sizeof(Bucket)<<endl;
 
   uint32_t* conflictRanges = new uint32_t[rSize];
   uint32_t* conflictRangeCounts = new uint32_t[numPartitions];
+
+#if TM_TRACK
+  tbb::atomic<int> b1=0,b2=0,b3=0,b4=0,b5=0,b6=0,b7=0, b8=0;
+#endif // TM_TRACK
 
   struct timeval before, after;
   gettimeofday(&before, NULL);
@@ -49,6 +56,9 @@ HTMHashBuild(uint32_t* relR, uint32_t rSize, uint32_t transactionSize, uint32_t 
   uint32_t tableMask = numBuckets - 1;
   parallel_for(blocked_range<size_t>(0, rSize, inputPartitionSize),
                [buckets, tableMask, transactionSize, inputPartitionSize,
+#if TM_TRACK
+                &b1, &b2, &b3, &b4, &b5, &b6, &b7, &b8,
+#endif
                 relR, conflictRanges, conflictRangeCounts](const auto range) {
                  uint32_t localConflictRangeCount = 0;
                  uint32_t localPartitionId = range.begin() / inputPartitionSize;
@@ -65,9 +75,18 @@ HTMHashBuild(uint32_t* relR, uint32_t rSize, uint32_t transactionSize, uint32_t 
                      _xend();
                    } else {
                      conflictRanges[conflictPartitionStart + localConflictRangeCount++] = j;
+#if TM_TRACK
+                    if (status == _XABORT_EXPLICIT) b1 += 1;
+                     else if (status == _XABORT_RETRY) b2 += 1;
+                     else if (status == _XABORT_CONFLICT) b3 += 1;
+                     else if (status == _XABORT_CAPACITY) b4 += 1;
+                     else if (status == _XABORT_DEBUG) b5 += 1;
+                     else if (status == _XABORT_NESTED) b6 += 1;
+                     else if (status == _XBEGIN_STARTED) b7 += 1;
+                     else b8 += 1;
+#endif // TRACK_CONFLICT
                    }
                  }
-                 conflictCounts[localPartitionId] = localConflictCount;
                  conflictRangeCounts[localPartitionId] = localConflictRangeCount;
                });
 
@@ -86,7 +105,7 @@ HTMHashBuild(uint32_t* relR, uint32_t rSize, uint32_t transactionSize, uint32_t 
   auto sum = parallel_deterministic_reduce(blocked_range<size_t>(0, numBuckets, 1024), 0ul,
                                            [buckets](auto range, auto init) {
                                              for(size_t i = range.begin(); i < range.end(); i++) {
-                                               for (uint32_t j = 0; j < buckets[i].count; i++) {
+                                               for (uint32_t j = 0; j < buckets[i].count; j++) {
                                                  init += buckets[i].tuples[j];
                                                }
                                              }
@@ -136,6 +155,10 @@ HTMHashBuild(uint32_t* relR, uint32_t rSize, uint32_t transactionSize, uint32_t 
   cout << ", "
        << "\"outputSum\": " << sum + failedTransactionSum;
   cout << "}" << endl;
+
+#if TM_TRACK
+  printf("Conflict Reason: %d %d %d %d %d %d %d %d\n", b1, b2, b3, b4, b5, b6, b7, b8);
+#endif //TM_TRACK
 
   free(buckets);
   // delete[] conflicts;
