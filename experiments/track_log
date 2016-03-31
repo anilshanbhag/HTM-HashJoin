@@ -1,56 +1,112 @@
-{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 107263, "conflictCount": 0, "failedTransactions": 4176, "failedTransactionPercentage": 3.11136e-05, "totalFailedPercentage": 3.11136e-05, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
-Conflict Reason: 0 37 37 41 0 0 966 0
-{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 94520, "conflictCount": 0, "failedTransactions": 4328, "failedTransactionPercentage": 3.22461e-05, "totalFailedPercentage": 3.22461e-05, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
-Conflict Reason: 0 43 43 95 0 0 944 0
-{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 101526, "conflictCount": 0, "failedTransactions": 4692, "failedTransactionPercentage": 3.49581e-05, "totalFailedPercentage": 3.49581e-05, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
-Conflict Reason: 0 52 52 71 0 0 1050 0
-{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 92817, "conflictCount": 0, "failedTransactions": 4460, "failedTransactionPercentage": 3.32296e-05, "totalFailedPercentage": 3.32296e-05, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
-Conflict Reason: 0 17 17 97 0 0 1001 0
-{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 96101, "conflictCount": 0, "failedTransactions": 4192, "failedTransactionPercentage": 3.12328e-05, "totalFailedPercentage": 3.12328e-05, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
-Conflict Reason: 0 11 11 111 0 0 926 0
-{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 109001, "conflictCount": 0, "failedTransactions": 3692, "failedTransactionPercentage": 2.75075e-05, "totalFailedPercentage": 2.75075e-05, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
-Conflict Reason: 0 28 28 54 0 0 841 0
-{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 114750, "conflictCount": 0, "failedTransactions": 32008, "failedTransactionPercentage": 0.000238478, "totalFailedPercentage": 0.000238478, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
-Conflict Reason: 0 1117 1117 129 0 0 6756 0
-{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 114264, "conflictCount": 0, "failedTransactions": 3660, "failedTransactionPercentage": 2.72691e-05, "totalFailedPercentage": 2.72691e-05, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
-Conflict Reason: 0 37 37 25 0 0 853 0
-{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 103362, "conflictCount": 0, "failedTransactions": 3476, "failedTransactionPercentage": 2.58982e-05, "totalFailedPercentage": 2.58982e-05, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
-Conflict Reason: 0 60 60 8 0 0 801 0
-{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 104044, "conflictCount": 0, "failedTransactions": 3952, "failedTransactionPercentage": 2.94447e-05, "totalFailedPercentage": 2.94447e-05, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
-Conflict Reason: 0 78 78 5 0 0 905 0
-{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 106950, "conflictCount": 0, "failedTransactions": 76824, "failedTransactionPercentage": 0.000572383, "totalFailedPercentage": 0.000572383, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
-Conflict Reason: 0 356 356 57 0 0 18793 0
-{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 117886, "conflictCount": 0, "failedTransactions": 4676, "failedTransactionPercentage": 3.48389e-05, "totalFailedPercentage": 3.48389e-05, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
-Conflict Reason: 0 96 96 159 0 0 914 0
-{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 118999, "conflictCount": 0, "failedTransactions": 14656, "failedTransactionPercentage": 0.000109196, "totalFailedPercentage": 0.000109196, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
-Conflict Reason: 0 272 272 493 0 0 2899 0
-{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 111310, "conflictCount": 0, "failedTransactions": 68652, "failedTransactionPercentage": 0.000511497, "totalFailedPercentage": 0.000511497, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
-Conflict Reason: 0 364 364 913 0 0 15886 0
-{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 126073, "conflictCount": 0, "failedTransactions": 245036, "failedTransactionPercentage": 0.00182566, "totalFailedPercentage": 0.00182566, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
-Conflict Reason: 0 1237 1237 1145 0 0 58877 0
-{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 147760, "conflictCount": 0, "failedTransactions": 318632, "failedTransactionPercentage": 0.00237399, "totalFailedPercentage": 0.00237399, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
-Conflict Reason: 0 1900 1900 1292 0 0 76466 0
-{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 159179, "conflictCount": 0, "failedTransactions": 353424, "failedTransactionPercentage": 0.00263321, "totalFailedPercentage": 0.00263321, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
-Conflict Reason: 0 2848 2848 1618 0 0 83890 0
-{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 235437, "conflictCount": 0, "failedTransactions": 617416, "failedTransactionPercentage": 0.00460011, "totalFailedPercentage": 0.00460011, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
-Conflict Reason: 0 8446 8446 1641 0 0 144267 0
-{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 602088, "conflictCount": 0, "failedTransactions": 1530344, "failedTransactionPercentage": 0.011402, "totalFailedPercentage": 0.011402, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
-Conflict Reason: 0 10470 10470 1406 0 0 370710 0
-{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 809053, "conflictCount": 0, "failedTransactions": 2086964, "failedTransactionPercentage": 0.0155491, "totalFailedPercentage": 0.0155491, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
-Conflict Reason: 0 8590 8590 1128 0 0 512023 0
-{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 905846, "conflictCount": 0, "failedTransactions": 2270596, "failedTransactionPercentage": 0.0169173, "totalFailedPercentage": 0.0169173, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
-Conflict Reason: 0 5871 5871 1136 0 0 560642 0
-{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 945330, "conflictCount": 0, "failedTransactions": 2118676, "failedTransactionPercentage": 0.0157854, "totalFailedPercentage": 0.0157854, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
-Conflict Reason: 0 4317 4317 1206 0 0 524146 0
-{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 960133, "conflictCount": 0, "failedTransactions": 1417000, "failedTransactionPercentage": 0.0105575, "totalFailedPercentage": 0.0105575, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
-Conflict Reason: 0 2688 2688 1225 0 0 350337 0
-{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 961802, "conflictCount": 0, "failedTransactions": 1478316, "failedTransactionPercentage": 0.0110143, "totalFailedPercentage": 0.0110143, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
-Conflict Reason: 0 3592 3592 1471 0 0 364516 0
-{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 969884, "conflictCount": 0, "failedTransactions": 1092004, "failedTransactionPercentage": 0.00813606, "totalFailedPercentage": 0.00813606, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
-Conflict Reason: 0 2760 2760 1243 0 0 268998 0
-{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 987700, "conflictCount": 0, "failedTransactions": 962072, "failedTransactionPercentage": 0.00716799, "totalFailedPercentage": 0.00716799, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
-Conflict Reason: 0 2613 2613 1268 0 0 236637 0
-{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 973649, "conflictCount": 0, "failedTransactions": 847024, "failedTransactionPercentage": 0.00631082, "totalFailedPercentage": 0.00631082, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
-Conflict Reason: 0 2032 2032 1296 0 0 208428 0
-{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 990054, "conflictCount": 0, "failedTransactions": 810300, "failedTransactionPercentage": 0.00603721, "totalFailedPercentage": 0.00603721, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
-Conflict Reason: 0 2150 2150 1273 0 0 199152 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 97406, "conflictCount": 0, "failedTransactions": 4540, "failedTransactionPercentage": 3.38256e-05, "totalFailedPercentage": 3.38256e-05, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 26 26 53 0 0 1056 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 104509, "conflictCount": 0, "failedTransactions": 4356, "failedTransactionPercentage": 3.24547e-05, "totalFailedPercentage": 3.24547e-05, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 39 39 88 0 0 962 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 92836, "conflictCount": 0, "failedTransactions": 5812, "failedTransactionPercentage": 4.33028e-05, "totalFailedPercentage": 4.33028e-05, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 34 34 69 0 0 1350 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 94527, "conflictCount": 0, "failedTransactions": 5380, "failedTransactionPercentage": 4.00841e-05, "totalFailedPercentage": 4.00841e-05, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 49 49 72 0 0 1224 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 96010, "conflictCount": 0, "failedTransactions": 4424, "failedTransactionPercentage": 3.29614e-05, "totalFailedPercentage": 3.29614e-05, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 33 33 79 0 0 994 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 101170, "conflictCount": 0, "failedTransactions": 20692, "failedTransactionPercentage": 0.000154167, "totalFailedPercentage": 0.000154167, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 566 566 103 0 0 4504 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 100974, "conflictCount": 0, "failedTransactions": 5712, "failedTransactionPercentage": 4.25577e-05, "totalFailedPercentage": 4.25577e-05, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 42 42 70 0 0 1316 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 102367, "conflictCount": 0, "failedTransactions": 3740, "failedTransactionPercentage": 2.78652e-05, "totalFailedPercentage": 2.78652e-05, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 56 56 20 0 0 859 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 115325, "conflictCount": 0, "failedTransactions": 3392, "failedTransactionPercentage": 2.52724e-05, "totalFailedPercentage": 2.52724e-05, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 40 40 8 0 0 800 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 104115, "conflictCount": 0, "failedTransactions": 3916, "failedTransactionPercentage": 2.91765e-05, "totalFailedPercentage": 2.91765e-05, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 96 96 7 0 0 876 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 118389, "conflictCount": 0, "failedTransactions": 33536, "failedTransactionPercentage": 0.000249863, "totalFailedPercentage": 0.000249863, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 239 239 63 0 0 8082 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 119503, "conflictCount": 0, "failedTransactions": 15968, "failedTransactionPercentage": 0.000118971, "totalFailedPercentage": 0.000118971, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 1655 1655 194 0 0 2143 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 107736, "conflictCount": 0, "failedTransactions": 6708, "failedTransactionPercentage": 4.99785e-05, "totalFailedPercentage": 4.99785e-05, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 136 136 558 0 0 983 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 121901, "conflictCount": 0, "failedTransactions": 15428, "failedTransactionPercentage": 0.000114948, "totalFailedPercentage": 0.000114948, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 207 207 950 0 0 2700 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 135717, "conflictCount": 0, "failedTransactions": 242484, "failedTransactionPercentage": 0.00180665, "totalFailedPercentage": 0.00180665, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 996 996 1205 0 0 58420 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 158540, "conflictCount": 0, "failedTransactions": 292832, "failedTransactionPercentage": 0.00218177, "totalFailedPercentage": 0.00218177, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 1681 1681 1361 0 0 70166 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 160366, "conflictCount": 0, "failedTransactions": 371296, "failedTransactionPercentage": 0.00276637, "totalFailedPercentage": 0.00276637, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 2468 2468 1618 0 0 88738 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 241637, "conflictCount": 0, "failedTransactions": 650812, "failedTransactionPercentage": 0.00484893, "totalFailedPercentage": 0.00484893, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 8093 8093 1911 0 0 152699 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 603952, "conflictCount": 0, "failedTransactions": 1565500, "failedTransactionPercentage": 0.0116639, "totalFailedPercentage": 0.0116639, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 10255 10255 1404 0 0 379716 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 809943, "conflictCount": 0, "failedTransactions": 2166180, "failedTransactionPercentage": 0.0161393, "totalFailedPercentage": 0.0161393, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 8435 8435 1255 0 0 531855 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 908241, "conflictCount": 0, "failedTransactions": 2347812, "failedTransactionPercentage": 0.0174926, "totalFailedPercentage": 0.0174926, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 5535 5535 1140 0 0 580278 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 945635, "conflictCount": 0, "failedTransactions": 2167512, "failedTransactionPercentage": 0.0161492, "totalFailedPercentage": 0.0161492, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 3785 3785 1149 0 0 536944 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 958489, "conflictCount": 0, "failedTransactions": 1759140, "failedTransactionPercentage": 0.0131066, "totalFailedPercentage": 0.0131066, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 3444 3444 1459 0 0 434882 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 968090, "conflictCount": 0, "failedTransactions": 1145080, "failedTransactionPercentage": 0.00853151, "totalFailedPercentage": 0.00853151, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 2574 2574 1269 0 0 282427 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 984119, "conflictCount": 0, "failedTransactions": 1024732, "failedTransactionPercentage": 0.00763485, "totalFailedPercentage": 0.00763485, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 2320 2320 1213 0 0 252650 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 1005469, "conflictCount": 0, "failedTransactions": 864608, "failedTransactionPercentage": 0.00644183, "totalFailedPercentage": 0.00644183, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 1557 1557 1286 0 0 213309 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 974106, "conflictCount": 0, "failedTransactions": 876704, "failedTransactionPercentage": 0.00653195, "totalFailedPercentage": 0.00653195, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 2334 2334 1227 0 0 215615 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 4, "probeLength": 4, "hashBuildTimeInMicroseconds": 975280, "conflictCount": 0, "failedTransactions": 824604, "failedTransactionPercentage": 0.00614378, "totalFailedPercentage": 0.00614378, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 1495 1495 1267 0 0 203389 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 8, "probeLength": 4, "hashBuildTimeInMicroseconds": 79548, "conflictCount": 0, "failedTransactions": 9680, "failedTransactionPercentage": 7.21216e-05, "totalFailedPercentage": 7.21216e-05, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 54 54 218 0 0 938 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 8, "probeLength": 4, "hashBuildTimeInMicroseconds": 81065, "conflictCount": 0, "failedTransactions": 10608, "failedTransactionPercentage": 7.90358e-05, "totalFailedPercentage": 7.90358e-05, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 24 24 295 0 0 1007 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 8, "probeLength": 4, "hashBuildTimeInMicroseconds": 79083, "conflictCount": 0, "failedTransactions": 9576, "failedTransactionPercentage": 7.13468e-05, "totalFailedPercentage": 7.13468e-05, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 34 34 331 0 0 832 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 8, "probeLength": 4, "hashBuildTimeInMicroseconds": 71400, "conflictCount": 0, "failedTransactions": 9584, "failedTransactionPercentage": 7.14064e-05, "totalFailedPercentage": 7.14064e-05, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 14 14 302 0 0 882 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 8, "probeLength": 4, "hashBuildTimeInMicroseconds": 71290, "conflictCount": 0, "failedTransactions": 9800, "failedTransactionPercentage": 7.30157e-05, "totalFailedPercentage": 7.30157e-05, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 42 42 320 0 0 863 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 8, "probeLength": 4, "hashBuildTimeInMicroseconds": 81915, "conflictCount": 0, "failedTransactions": 11536, "failedTransactionPercentage": 8.59499e-05, "totalFailedPercentage": 8.59499e-05, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 38 38 532 0 0 872 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 8, "probeLength": 4, "hashBuildTimeInMicroseconds": 83935, "conflictCount": 0, "failedTransactions": 15480, "failedTransactionPercentage": 0.000115335, "totalFailedPercentage": 0.000115335, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 31 31 1037 0 0 867 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 8, "probeLength": 4, "hashBuildTimeInMicroseconds": 79511, "conflictCount": 0, "failedTransactions": 11120, "failedTransactionPercentage": 8.28505e-05, "totalFailedPercentage": 8.28505e-05, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 37 37 515 0 0 838 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 8, "probeLength": 4, "hashBuildTimeInMicroseconds": 80803, "conflictCount": 0, "failedTransactions": 9504, "failedTransactionPercentage": 7.08103e-05, "totalFailedPercentage": 7.08103e-05, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 24 24 251 0 0 913 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 8, "probeLength": 4, "hashBuildTimeInMicroseconds": 88792, "conflictCount": 0, "failedTransactions": 8552, "failedTransactionPercentage": 6.37174e-05, "totalFailedPercentage": 6.37174e-05, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 71 71 99 0 0 899 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 8, "probeLength": 4, "hashBuildTimeInMicroseconds": 82721, "conflictCount": 0, "failedTransactions": 10840, "failedTransactionPercentage": 8.07643e-05, "totalFailedPercentage": 8.07643e-05, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 43 43 341 0 0 971 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 8, "probeLength": 4, "hashBuildTimeInMicroseconds": 94100, "conflictCount": 0, "failedTransactions": 19176, "failedTransactionPercentage": 0.000142872, "totalFailedPercentage": 0.000142872, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 233 233 1252 0 0 912 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 8, "probeLength": 4, "hashBuildTimeInMicroseconds": 86920, "conflictCount": 0, "failedTransactions": 37552, "failedTransactionPercentage": 0.000279784, "totalFailedPercentage": 0.000279784, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 116 116 3423 0 0 1155 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 8, "probeLength": 4, "hashBuildTimeInMicroseconds": 91866, "conflictCount": 0, "failedTransactions": 106040, "failedTransactionPercentage": 0.00079006, "totalFailedPercentage": 0.00079006, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 170 170 5333 0 0 7752 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 8, "probeLength": 4, "hashBuildTimeInMicroseconds": 105982, "conflictCount": 0, "failedTransactions": 501136, "failedTransactionPercentage": 0.00373375, "totalFailedPercentage": 0.00373375, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 1627 1627 5433 0 0 55582 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 8, "probeLength": 4, "hashBuildTimeInMicroseconds": 139983, "conflictCount": 0, "failedTransactions": 618736, "failedTransactionPercentage": 0.00460994, "totalFailedPercentage": 0.00460994, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 2758 2758 4775 0 0 69809 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 8, "probeLength": 4, "hashBuildTimeInMicroseconds": 155844, "conflictCount": 0, "failedTransactions": 742120, "failedTransactionPercentage": 0.00552922, "totalFailedPercentage": 0.00552922, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 3133 3133 5277 0 0 84355 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 8, "probeLength": 4, "hashBuildTimeInMicroseconds": 221007, "conflictCount": 0, "failedTransactions": 1346288, "failedTransactionPercentage": 0.0100306, "totalFailedPercentage": 0.0100306, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 8474 8474 4994 0 0 154818 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 8, "probeLength": 4, "hashBuildTimeInMicroseconds": 574744, "conflictCount": 0, "failedTransactions": 2947520, "failedTransactionPercentage": 0.0219607, "totalFailedPercentage": 0.0219607, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 9487 9487 4340 0 0 354613 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 8, "probeLength": 4, "hashBuildTimeInMicroseconds": 773865, "conflictCount": 0, "failedTransactions": 3882648, "failedTransactionPercentage": 0.028928, "totalFailedPercentage": 0.028928, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 8274 8274 4191 0 0 472866 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 8, "probeLength": 4, "hashBuildTimeInMicroseconds": 877295, "conflictCount": 0, "failedTransactions": 4595392, "failedTransactionPercentage": 0.0342383, "totalFailedPercentage": 0.0342383, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 5327 5327 3770 0 0 565327 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 8, "probeLength": 4, "hashBuildTimeInMicroseconds": 914997, "conflictCount": 0, "failedTransactions": 4242360, "failedTransactionPercentage": 0.031608, "totalFailedPercentage": 0.031608, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 3871 3871 3742 0 0 522682 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 8, "probeLength": 4, "hashBuildTimeInMicroseconds": 923629, "conflictCount": 0, "failedTransactions": 3454976, "failedTransactionPercentage": 0.0257416, "totalFailedPercentage": 0.0257416, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 4515 4515 3650 0 0 423707 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 8, "probeLength": 4, "hashBuildTimeInMicroseconds": 931445, "conflictCount": 0, "failedTransactions": 2322312, "failedTransactionPercentage": 0.0173026, "totalFailedPercentage": 0.0173026, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 2364 2364 3651 0 0 284274 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 8, "probeLength": 4, "hashBuildTimeInMicroseconds": 933531, "conflictCount": 0, "failedTransactions": 2208352, "failedTransactionPercentage": 0.0164535, "totalFailedPercentage": 0.0164535, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 3053 3053 3809 0 0 269182 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 8, "probeLength": 4, "hashBuildTimeInMicroseconds": 934947, "conflictCount": 0, "failedTransactions": 1947088, "failedTransactionPercentage": 0.0145069, "totalFailedPercentage": 0.0145069, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 3070 3070 3720 0 0 236596 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 8, "probeLength": 4, "hashBuildTimeInMicroseconds": 934843, "conflictCount": 0, "failedTransactions": 1661184, "failedTransactionPercentage": 0.0123768, "totalFailedPercentage": 0.0123768, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 2333 2333 3697 0 0 201618 0
+{"algo": "htm","rSize": 134217728, "transactionSize": 8, "probeLength": 4, "hashBuildTimeInMicroseconds": 948191, "conflictCount": 0, "failedTransactions": 1464072, "failedTransactionPercentage": 0.0109082, "totalFailedPercentage": 0.0109082, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+Conflict Reason: 0 1827 1827 3554 0 0 177628 0
