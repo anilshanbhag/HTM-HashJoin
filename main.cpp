@@ -8,7 +8,17 @@
 
 #include "config.h"
 #include "AtomicHashBuild.hpp"
+
+#if HTM_ADAPTIVE
 #include "HTMAdaptive.hpp"
+#elif HTM_SWITCH
+#include "HTMSwitch.hpp"
+#elif HTM_ALTERNATE
+#include "HTMAlternate.hpp"
+#else
+#include "HTMHashBuild.hpp"
+#endif
+
 #include "NoCCHashBuild.hpp"
 #include "include/DataGen.hpp"
 
