@@ -13,6 +13,8 @@
 
 #include "config.h"
 
+#define K 10
+
 using namespace std;
 using namespace tbb;
 
@@ -51,7 +53,7 @@ HTMHashBuild(uint32_t* relR, uint32_t rSize,
   uint32_t tableMask = tableSize - 1;
   parallel_for(blocked_range<size_t>(0, rSize, inputPartitionSize),
                [output, tableMask, transactionSize, inputPartitionSize, probeLength,
-                conflicts, conflictCounts, relR, conflictRanges,
+                conflicts, conflictCounts, relR, conflictRanges, &firstRoundConflicts,
 #if TM_TRACK
                 &b1, &b2, &b3, &b4, &b5, &b6, &b7, &b8,
 #endif
@@ -62,8 +64,8 @@ HTMHashBuild(uint32_t* relR, uint32_t rSize,
                  uint32_t conflictPartitionStart = inputPartitionSize * localPartitionId;
                  uint32_t localFailsCount = 0;
                  // Initialize tSize to transactionSize.
-                 uint32_t tSize = 4;
-                 for(size_t k = range.begin(); k < range.begin() + 16384; k += 16384) {
+                 uint32_t tSize = 16;
+                 for(size_t k = range.begin(); k < range.begin() + 16384*K; k += 16384) {
                    uint32_t total = 16384 / tSize;
                    uint32_t prevConflictRangeCount = localConflictRangeCount;
                    for(size_t j = k; j < k + 16384; j += tSize) {
@@ -117,12 +119,11 @@ HTMHashBuild(uint32_t* relR, uint32_t rSize,
                  // cout<<"TSize "<<tSize<<endl;
                });
 
-  uint32_t totalRun = 16384 * numPartitions;
-  double conflictRate = (firstRoundConflicts / (1.0 * totalRun));
+  uint32_t totalRun = 16384 * K * numPartitions;
+  double firstRoundFailureFraction = (firstRoundConflicts / (1.0 * totalRun));
 
   gettimeofday(&afterFirstRound, NULL);
 
-  uint32_t tableMask = tableSize - 1;
   parallel_for(blocked_range<size_t>(0, rSize, inputPartitionSize),
                [output, tableMask, transactionSize, inputPartitionSize, probeLength,
                 conflicts, conflictCounts, relR, conflictRanges,
@@ -136,7 +137,7 @@ HTMHashBuild(uint32_t* relR, uint32_t rSize,
                  uint32_t conflictPartitionStart = inputPartitionSize * localPartitionId;
                  // Initialize tSize to transactionSize.
                  uint32_t tSize = transactionSize;
-                 for(size_t k = range.begin() + 16384; k < range.end(); k += 16384) {
+                 for(size_t k = range.begin() + 16384*K; k < range.end(); k += 16384) {
                    uint32_t total = 16384 / tSize;
                    uint32_t prevConflictRangeCount = localConflictRangeCount;
                    for(size_t j = k; j < k + 16384; j += tSize) {
@@ -337,7 +338,7 @@ HTMHashBuild(uint32_t* relR, uint32_t rSize,
        << (afterFirstRound.tv_sec * 1000000 + afterFirstRound.tv_usec) -
                (before.tv_sec * 1000000 + before.tv_usec);
   cout << ", \"firstRoundFailureFraction\": "
-       <<  firstRoundConflictRate;
+       <<  firstRoundFailureFraction;
   cout << ", "
        << "\"conflictCount\": " << conflictCount;
   cout << ", "
