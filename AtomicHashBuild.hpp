@@ -46,7 +46,7 @@ AtomicHashBuild(uint64_t* relR, uint32_t rSize,
       while (probeBudget != 0) {
         uint64_t prevVal = output[curSlot].load(std::memory_order_relaxed);
         if (prevVal == 0) {
-          unsigned int zero = 0;
+          uint64_t zero = 0;
           bool success = output[curSlot].compare_exchange_strong(zero, relR[i]);
           if (success) {
             break;

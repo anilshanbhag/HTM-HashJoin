@@ -29,9 +29,9 @@ HTMHashBuild(uint64_t* relR, uint32_t rSize,
   uint32_t inputPartitionSize = rSize / numPartitions;
   uint32_t outputPartitionSize = tableSize / numPartitions;
 
-  uint64_t* output = new uint32_t[tableSize]{};
+  uint64_t* output = new uint64_t[tableSize]{};
 
-  uint64_t* conflicts = new uint32_t[rSize]{};
+  uint64_t* conflicts = new uint64_t[rSize]{};
   uint32_t* conflictCounts = new uint32_t[numPartitions]{};
 
   uint64_t* conflictRanges = new uint64_t[rSize]{};
