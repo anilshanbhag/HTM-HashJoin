@@ -1,6 +1,6 @@
 #!/bin/bash
 HTMHOME=/home/anil/htm
-HTM=$HTMHOME/main
+HTM=$HTMHOME/retry
 
 # Run HTM
 for i in `seq 0 27`
@@ -39,7 +39,7 @@ do
 done
 
 # Run HTM
-for i in `seq 0 27`
-do
-  pl $HTM --algo htm --rSize $((2**27)) --probeLength 4 --transactionSize 128 --dataDistr local_shuffle --shuffleRange $((2**i))
-done
+#for i in `seq 0 27`
+#do
+#  pl $HTM --algo htm --rSize $((2**27)) --probeLength 4 --transactionSize 128 --dataDistr local_shuffle --shuffleRange $((2**i))
+#done
