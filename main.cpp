@@ -84,8 +84,8 @@ main(int argc, char* argv[]) {
   parseArgs(argc, argv, &cmdParams);
 
 #if ENABLE_PROBE
-  uint32_t* relR = generate_data(cmdParams.dataDistr, cmdParams.rSize, cmdParams.rSize, cmdParams.shuffleRange);
-  uint32_t* relS = generate_data("sorted", cmdParams.rSize, cmdParams.rSize, cmdParams.shuffleRange);
+  uint64_t* relR = generate_data(cmdParams.dataDistr, cmdParams.rSize, cmdParams.rSize, cmdParams.shuffleRange);
+  uint64_t* relS = generate_data("sorted", cmdParams.rSize, cmdParams.rSize, cmdParams.shuffleRange);
 
   if (cmdParams.algo == "atomic")
     AtomicHashBuild(relR, cmdParams.rSize, relS, cmdParams.rSize, cmdParams.scaleOutput, cmdParams.numPartitions, cmdParams.probeLength);
@@ -99,7 +99,7 @@ main(int argc, char* argv[]) {
   free(relR);
   free(relS);
 #else
-  uint32_t* relR = generate_data(cmdParams.dataDistr, cmdParams.rSize, cmdParams.rSize, cmdParams.shuffleRange);
+  uint64_t* relR = generate_data(cmdParams.dataDistr, cmdParams.rSize, cmdParams.rSize, cmdParams.shuffleRange);
 
   if (cmdParams.algo == "atomic")
     AtomicHashBuild(relR, cmdParams.rSize, cmdParams.scaleOutput, cmdParams.numPartitions, cmdParams.probeLength);

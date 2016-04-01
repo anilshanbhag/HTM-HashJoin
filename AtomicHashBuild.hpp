@@ -12,9 +12,9 @@ using namespace std;
 using namespace tbb;
 
 void
-AtomicHashBuild(uint32_t* relR, uint32_t rSize,
+AtomicHashBuild(uint64_t* relR, uint32_t rSize,
 #if ENABLE_PROBE
-    uint32_t* relS, uint32_t sSize,
+    uint64_t* relS, uint32_t sSize,
 #endif
     uint32_t scaleOutput, uint32_t numPartitions,
     uint32_t probeLength) {
@@ -22,8 +22,8 @@ AtomicHashBuild(uint32_t* relR, uint32_t rSize,
   uint32_t inputPartitionSize = rSize / numPartitions;
   uint32_t outputPartitionSize = tableSize / numPartitions;
 
-  auto output = new std::atomic<uint32_t>[tableSize]{};
-  uint32_t* conflicts = new uint32_t[rSize]{};
+  auto output = new std::atomic<uint64_t>[tableSize]{};
+  uint64_t* conflicts = new uint64_t[rSize]{};
   uint32_t* conflictCounts = new uint32_t[numPartitions]{};
 
 #if ENABLE_PROBE
@@ -44,7 +44,7 @@ AtomicHashBuild(uint32_t* relR, uint32_t rSize,
       uint32_t curSlot = relR[i] & tableMask;
       uint32_t probeBudget = probeLength;
       while (probeBudget != 0) {
-        uint32_t prevVal = output[curSlot].load(std::memory_order_relaxed);
+        uint64_t prevVal = output[curSlot].load(std::memory_order_relaxed);
         if (prevVal == 0) {
           unsigned int zero = 0;
           bool success = output[curSlot].compare_exchange_strong(zero, relR[i]);

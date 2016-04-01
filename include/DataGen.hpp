@@ -2,6 +2,7 @@
 
 #include <tbb/tbb.h>
 #include <string>
+#include <random>
 using namespace std;
 using namespace tbb;
 
@@ -21,10 +22,10 @@ inline uint32_t murmur( uint32_t h )
 }
 
 // local_shuffle_range used only by local_shuffle
-uint32_t* generate_data(string dist, uint32_t size_in_tuples, uint32_t distinct_keys, int local_shuffle_range = 16) {
+uint64_t* generate_data(string dist, uint32_t size_in_tuples, uint32_t distinct_keys, int local_shuffle_range = 16) {
   srand(0);
   uint32_t mod_mask = distinct_keys - 1;
-  uint32_t* input = new uint32_t[size_in_tuples];
+  uint64_t* input = new uint64_t[size_in_tuples];
   if (dist == "uniform") {
     /*parallel_for(blocked_range<size_t>(0, size_in_tuples,
         size_in_tuples / 64),
@@ -76,7 +77,7 @@ uint32_t* generate_data(string dist, uint32_t size_in_tuples, uint32_t distinct_
     for(size_t i = 0; i < size_in_tuples - 1; i++) {
       if(!shuffled[i]) {
         int swap = rand() % min(local_shuffle_range, (int)(size_in_tuples - i));
-        uint32_t temp = input[i];
+        uint64_t temp = input[i];
         input[i] = input[(i + swap)];
         input[(i + swap)] = temp;
         shuffled[(i + swap)] = true;

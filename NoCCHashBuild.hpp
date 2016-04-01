@@ -11,9 +11,9 @@ using namespace std;
 using namespace tbb;
 
 void
-NoCCHashBuild(uint32_t* relR, uint32_t rSize,
+NoCCHashBuild(uint64_t* relR, uint32_t rSize,
 #if ENABLE_PROBE
-    uint32_t* relS, uint32_t sSize,
+    uint64_t* relS, uint32_t sSize,
 #endif
     uint32_t scaleOutput, uint32_t numPartitions,
     uint32_t probeLength) {
@@ -21,9 +21,9 @@ NoCCHashBuild(uint32_t* relR, uint32_t rSize,
   uint32_t inputPartitionSize = rSize / numPartitions;
   uint32_t outputPartitionSize = tableSize / numPartitions;
 
-  uint32_t* output = new uint32_t[tableSize]{};
+  uint64_t* output = new uint64_t[tableSize]{};
 
-  uint32_t* conflicts = new uint32_t[rSize]{};
+  uint64_t* conflicts = new uint64_t[rSize]{};
   uint32_t* conflictCounts = new uint32_t[numPartitions]{};
 
 #if ENABLE_PROBE
