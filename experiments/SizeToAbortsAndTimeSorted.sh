@@ -2,7 +2,7 @@
 
 HTMHOME=/home/anil/htm
 MCHOME=/home/anil/htm/mc
-HTM=$HTMHOME/main
+HTM=$HTMHOME/noretry
 MC=$MCHOME/src/mchashjoins
 
 # Run HTM

@@ -2,8 +2,7 @@
 
 HTMHOME=/home/anil/htm
 MCHOME=/home/anil/htm/mc
-HTM=$HTMHOME/main
-ADAPTIVE=$HTMHOME/adaptive
+HTM=$HTMHOME/adaptive
 MC=$MCHOME/src/mchashjoins
 
 # Run MC
@@ -27,7 +26,7 @@ done
 # Run HTMHashBuild
 for i in `seq 0 27`
 do
-  pl $ADAPTIVE --algo htm --transactionSize 16 --rSize $((2**27)) --probeLength 4 --dataDistr local_shuffle --shuffleRange $((2**i))
+  pl $HTM --algo htm --transactionSize 16 --rSize $((2**27)) --probeLength 4 --dataDistr local_shuffle --shuffleRange $((2**i))
 done
 
 

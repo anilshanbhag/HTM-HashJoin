@@ -1,7 +1,7 @@
 #!/bin/bash
 
 HTMHOME=/home/anil/htm
-HTM=$HTMHOME/main
+HTM=$HTMHOME/noretry
 
 pl $HTM --algo nocc --rSize $((2**27)) --probeLength 4 --dataDistr sorted
 pl $HTM --algo nocc --rSize $((2**27)) --probeLength 4 --dataDistr shuffle
