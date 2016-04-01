@@ -9,8 +9,8 @@ using namespace tbb;
 
 int main() {
   int len = 1<<27;
-  int* a = new int[len]{1};
-  int *b = new int[len]{0};
+  uint64_t* a = new uint64_t[len]{1};
+  uint64_t* b = new uint64_t[len]{0};
 
   struct timeval before, after;
   gettimeofday(&before, NULL);
@@ -21,7 +21,7 @@ int main() {
        //for(size_t j = range.begin(); j < range.end(); j += 1)
        // b[j] = a[j];
        int j = range.begin(); int r = range.end() - range.begin();
-       memcpy(&b[j], &a[j], r*4);
+       memcpy(&b[j], &a[j], r*8);
   });
   // for (int i=0; i<len; i++) b[i] = a[i];
 
