@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export N=1
+export N=5
 
 for i in `seq 1 $N`
 do

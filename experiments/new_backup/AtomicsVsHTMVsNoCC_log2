@@ -1,0 +1,6 @@
+{"algo": "nocc","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 118901, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199187632128}
+{"algo": "nocc","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 840367, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199187632128}
+{"algo": "atomic","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 383908, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "atomic","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 1886026, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "htm","rSize": 134217728, "transactionSize": 1, "probeLength": 4, "hashBuildTimeInMicroseconds": 361760, "conflictCount": 0, "failedTransactions": 15633, "failedTransactionPercentage": 0.000116475, "totalFailedPercentage": 0.000116475, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "htm","rSize": 134217728, "transactionSize": 1, "probeLength": 4, "hashBuildTimeInMicroseconds": 1151042, "conflictCount": 0, "failedTransactions": 150513, "failedTransactionPercentage": 0.00112141, "totalFailedPercentage": 0.00112141, "inputSum": 9007199321849856, "outputSum": 9007199321849856}

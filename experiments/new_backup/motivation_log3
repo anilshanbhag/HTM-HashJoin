@@ -1,0 +1,308 @@
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 0.000 MiB, #tuples = 2 : OK 
+[INFO ] Running join algorithm PRO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1747321786 	 1747321736 	 1600447908 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+485363.0000 	 549688705024 	 13.0186 
+[INFO ] Results = 549688705024. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 0.000 MiB, #tuples = 2 : OK 
+[INFO ] Running join algorithm PRO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1679808226 	 1679808178 	 1533263222 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+466610.0000 	 549688705024 	 12.5155 
+[INFO ] Results = 549688705024. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 0.000 MiB, #tuples = 2 : OK 
+[INFO ] Running join algorithm PRO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1651918240 	 1651918190 	 1505191204 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+458862.0000 	 549688705024 	 12.3077 
+[INFO ] Results = 549688705024. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 0.000 MiB, #tuples = 2 : OK 
+[INFO ] Running join algorithm PRO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1630141316 	 1630141260 	 1483157276 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+452813.0000 	 549688705024 	 12.1455 
+[INFO ] Results = 549688705024. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 0.000 MiB, #tuples = 2 : OK 
+[INFO ] Running join algorithm PRO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1621347342 	 1621347292 	 1474714086 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+450371.0000 	 549688705024 	 12.0800 
+[INFO ] Results = 549688705024. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 0.000 MiB, #tuples = 2 : OK 
+[INFO ] Running join algorithm PRO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1613032946 	 1613032892 	 1466237978 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+448061.0000 	 549688705024 	 12.0180 
+[INFO ] Results = 549688705024. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 0.000 MiB, #tuples = 2 : OK 
+[INFO ] Running join algorithm PRO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1610095652 	 1610095604 	 1463561146 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+447245.0000 	 549688705024 	 11.9961 
+[INFO ] Results = 549688705024. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 0.000 MiB, #tuples = 2 : OK 
+[INFO ] Running join algorithm PRO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1603026146 	 1603026096 	 1456273560 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+445281.0000 	 549688705024 	 11.9435 
+[INFO ] Results = 549688705024. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 0.000 MiB, #tuples = 2 : OK 
+[INFO ] Running join algorithm PRO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1601466424 	 1601466368 	 1454749910 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+444848.0000 	 549688705024 	 11.9319 
+[INFO ] Results = 549688705024. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 0.000 MiB, #tuples = 2 : OK 
+[INFO ] Running join algorithm PRO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1600054232 	 1600054182 	 1453325976 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+444457.0000 	 549688705024 	 11.9213 
+[INFO ] Results = 549688705024. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 0.000 MiB, #tuples = 2 : OK 
+[INFO ] Running join algorithm PRO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1601896472 	 1601896420 	 1454752164 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+444968.0000 	 549688705024 	 11.9351 
+[INFO ] Results = 549688705024. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 0.000 MiB, #tuples = 2 : OK 
+[INFO ] Running join algorithm PRO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1597923152 	 1597923104 	 1451253272 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+443864.0000 	 549688705024 	 11.9055 
+[INFO ] Results = 549688705024. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 0.000 MiB, #tuples = 2 : OK 
+[INFO ] Running join algorithm PRO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1598065274 	 1598065222 	 1451450704 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+443903.0000 	 549688705024 	 11.9065 
+[INFO ] Results = 549688705024. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 0.000 MiB, #tuples = 2 : OK 
+[INFO ] Running join algorithm PRO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1595753388 	 1595753338 	 1449135080 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+443261.0000 	 549688705024 	 11.8893 
+[INFO ] Results = 549688705024. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 0.000 MiB, #tuples = 2 : OK 
+[INFO ] Running join algorithm PRO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1594960524 	 1594960472 	 1448243978 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+443040.0000 	 549688705024 	 11.8834 
+[INFO ] Results = 549688705024. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 0.000 MiB, #tuples = 2 : OK 
+[INFO ] Running join algorithm PRO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1594190818 	 1594190766 	 1447362322 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+442827.0000 	 549688705024 	 11.8776 
+[INFO ] Results = 549688705024. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 0.000 MiB, #tuples = 2 : OK 
+[INFO ] Running join algorithm PRO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1589795588 	 1589795538 	 1443216198 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+441607.0000 	 549688705024 	 11.8449 
+[INFO ] Results = 549688705024. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 0.000 MiB, #tuples = 2 : OK 
+[INFO ] Running join algorithm PRO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1588105680 	 1588105630 	 1441337956 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+441137.0000 	 549688705024 	 11.8323 
+[INFO ] Results = 549688705024. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 0.000 MiB, #tuples = 2 : OK 
+[INFO ] Running join algorithm PRO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1588667078 	 1588667022 	 1442195480 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+441294.0000 	 549688705024 	 11.8365 
+[INFO ] Results = 549688705024. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 0.000 MiB, #tuples = 2 : OK 
+[INFO ] Running join algorithm PRO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1584553646 	 1584553594 	 1438253464 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+440151.0000 	 549688705024 	 11.8058 
+[INFO ] Results = 549688705024. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 0.000 MiB, #tuples = 2 : OK 
+[INFO ] Running join algorithm PRO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1592450040 	 1592449980 	 1445901692 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+442344.0000 	 549688705024 	 11.8647 
+[INFO ] Results = 549688705024. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 0.000 MiB, #tuples = 2 : OK 
+[INFO ] Running join algorithm PRO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1588370106 	 1588370056 	 1442118974 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+441210.0000 	 549688705024 	 11.8343 
+[INFO ] Results = 549688705024. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 0.000 MiB, #tuples = 2 : OK 
+[INFO ] Running join algorithm PRO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1589874836 	 1589874786 	 1443416064 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+441628.0000 	 549688705024 	 11.8455 
+[INFO ] Results = 549688705024. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 0.000 MiB, #tuples = 2 : OK 
+[INFO ] Running join algorithm PRO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1593984730 	 1593984682 	 1447553004 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+442770.0000 	 549688705024 	 11.8761 
+[INFO ] Results = 549688705024. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 0.000 MiB, #tuples = 2 : OK 
+[INFO ] Running join algorithm PRO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1597204842 	 1597204792 	 1450577260 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+443665.0000 	 549688705024 	 11.9001 
+[INFO ] Results = 549688705024. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 0.000 MiB, #tuples = 2 : OK 
+[INFO ] Running join algorithm PRO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1593379416 	 1593379364 	 1446290588 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+442601.0000 	 549688705024 	 11.8716 
+[INFO ] Results = 549688705024. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 0.000 MiB, #tuples = 2 : OK 
+[INFO ] Running join algorithm PRO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1597690426 	 1597690378 	 1449877336 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+443799.0000 	 549688705024 	 11.9037 
+[INFO ] Results = 549688705024. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 0.000 MiB, #tuples = 2 : OK 
+[INFO ] Running join algorithm PRO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1592211772 	 1592211720 	 1444047244 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+442277.0000 	 549688705024 	 11.8629 
+[INFO ] Results = 549688705024. DONE.
+{"algo": "nocc","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 118971, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199187632128}
+{"algo": "nocc","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 119076, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199187632128}
+{"algo": "nocc","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 118962, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199187632128}
+{"algo": "nocc","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 118911, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199187632128}
+{"algo": "nocc","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 118439, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199187632128}
+{"algo": "nocc","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 118288, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199187632128}
+{"algo": "nocc","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 118315, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199187632128}
+{"algo": "nocc","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 118213, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199187632128}
+{"algo": "nocc","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 118556, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199187632128}
+{"algo": "nocc","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 119815, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199187632128}
+{"algo": "nocc","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 121988, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199187632128}
+{"algo": "nocc","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 123254, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199187632128}
+{"algo": "nocc","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 122756, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199187632128}
+{"algo": "nocc","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 129317, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199187632128}
+{"algo": "nocc","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 140602, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199187632128}
+{"algo": "nocc","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 153944, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199187632128}
+{"algo": "nocc","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 241318, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199187632128}
+{"algo": "nocc","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 506689, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199187632128}
+{"algo": "nocc","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 661046, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199187632128}
+{"algo": "nocc","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 751043, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199187632128}
+{"algo": "nocc","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 798375, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199187632128}
+{"algo": "nocc","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 818230, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199187632128}
+{"algo": "nocc","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 828122, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199187632128}
+{"algo": "nocc","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 834865, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199187632128}
+{"algo": "nocc","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 832825, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199187632128}
+{"algo": "nocc","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 832145, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199187632128}
+{"algo": "nocc","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 833988, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199187632128}
+{"algo": "nocc","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 838177, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199187632128}
+{"algo": "atomic","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 383446, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "atomic","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 384493, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "atomic","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 386309, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "atomic","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 386111, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "atomic","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 429007, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "atomic","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 388219, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "atomic","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 388453, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "atomic","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 389004, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "atomic","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 390514, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "atomic","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 395298, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "atomic","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 455653, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "atomic","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 436576, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "atomic","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 502733, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "atomic","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 491454, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "atomic","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 557494, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "atomic","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 594681, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "atomic","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 716085, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "atomic","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 1294262, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "atomic","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 1671247, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "atomic","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 1929605, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "atomic","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 2054661, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "atomic","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 1979091, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "atomic","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 1928260, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "atomic","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 1904272, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "atomic","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 1896538, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "atomic","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 1890339, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "atomic","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 1886671, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "atomic","rSize": 134217728, "probeLength": 4, "hashBuildTimeInMicroseconds": 1885498, "conflicts": 0, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "htm","rSize": 134217728, "transactionSize": 16, "probeLength": 4, "hashBuildTimeInMicroseconds": 123352, "conflictCount": 0, "failedTransactions": 787424, "failedTransactionPercentage": 0.00586677, "totalFailedPercentage": 0.00586677, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "htm","rSize": 134217728, "transactionSize": 16, "probeLength": 4, "hashBuildTimeInMicroseconds": 122569, "conflictCount": 0, "failedTransactions": 821040, "failedTransactionPercentage": 0.00611722, "totalFailedPercentage": 0.00611722, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "htm","rSize": 134217728, "transactionSize": 16, "probeLength": 4, "hashBuildTimeInMicroseconds": 123692, "conflictCount": 0, "failedTransactions": 821088, "failedTransactionPercentage": 0.00611758, "totalFailedPercentage": 0.00611758, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "htm","rSize": 134217728, "transactionSize": 16, "probeLength": 4, "hashBuildTimeInMicroseconds": 124769, "conflictCount": 0, "failedTransactions": 844080, "failedTransactionPercentage": 0.00628889, "totalFailedPercentage": 0.00628889, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "htm","rSize": 134217728, "transactionSize": 16, "probeLength": 4, "hashBuildTimeInMicroseconds": 124056, "conflictCount": 0, "failedTransactions": 891040, "failedTransactionPercentage": 0.00663877, "totalFailedPercentage": 0.00663877, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "htm","rSize": 134217728, "transactionSize": 16, "probeLength": 4, "hashBuildTimeInMicroseconds": 124907, "conflictCount": 0, "failedTransactions": 1000320, "failedTransactionPercentage": 0.00745296, "totalFailedPercentage": 0.00745296, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "htm","rSize": 134217728, "transactionSize": 16, "probeLength": 4, "hashBuildTimeInMicroseconds": 125468, "conflictCount": 0, "failedTransactions": 960032, "failedTransactionPercentage": 0.0071528, "totalFailedPercentage": 0.0071528, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "htm","rSize": 134217728, "transactionSize": 16, "probeLength": 4, "hashBuildTimeInMicroseconds": 124521, "conflictCount": 0, "failedTransactions": 896944, "failedTransactionPercentage": 0.00668275, "totalFailedPercentage": 0.00668275, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "htm","rSize": 134217728, "transactionSize": 16, "probeLength": 4, "hashBuildTimeInMicroseconds": 125334, "conflictCount": 0, "failedTransactions": 903648, "failedTransactionPercentage": 0.0067327, "totalFailedPercentage": 0.0067327, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "htm","rSize": 134217728, "transactionSize": 16, "probeLength": 4, "hashBuildTimeInMicroseconds": 132351, "conflictCount": 0, "failedTransactions": 1282080, "failedTransactionPercentage": 0.00955224, "totalFailedPercentage": 0.00955224, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "htm","rSize": 134217728, "transactionSize": 16, "probeLength": 4, "hashBuildTimeInMicroseconds": 136034, "conflictCount": 0, "failedTransactions": 1499072, "failedTransactionPercentage": 0.011169, "totalFailedPercentage": 0.011169, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "htm","rSize": 134217728, "transactionSize": 16, "probeLength": 4, "hashBuildTimeInMicroseconds": 136461, "conflictCount": 0, "failedTransactions": 1349672, "failedTransactionPercentage": 0.0100558, "totalFailedPercentage": 0.0100558, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "htm","rSize": 134217728, "transactionSize": 16, "probeLength": 4, "hashBuildTimeInMicroseconds": 144895, "conflictCount": 0, "failedTransactions": 1408960, "failedTransactionPercentage": 0.0104976, "totalFailedPercentage": 0.0104976, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "htm","rSize": 134217728, "transactionSize": 16, "probeLength": 4, "hashBuildTimeInMicroseconds": 163333, "conflictCount": 0, "failedTransactions": 1465938, "failedTransactionPercentage": 0.0109221, "totalFailedPercentage": 0.0109221, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "htm","rSize": 134217728, "transactionSize": 16, "probeLength": 4, "hashBuildTimeInMicroseconds": 198196, "conflictCount": 0, "failedTransactions": 1415712, "failedTransactionPercentage": 0.0105479, "totalFailedPercentage": 0.0105479, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "htm","rSize": 134217728, "transactionSize": 16, "probeLength": 4, "hashBuildTimeInMicroseconds": 220886, "conflictCount": 0, "failedTransactions": 1417131, "failedTransactionPercentage": 0.0105584, "totalFailedPercentage": 0.0105584, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "htm","rSize": 134217728, "transactionSize": 16, "probeLength": 4, "hashBuildTimeInMicroseconds": 330442, "conflictCount": 0, "failedTransactions": 1588331, "failedTransactionPercentage": 0.011834, "totalFailedPercentage": 0.011834, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "htm","rSize": 134217728, "transactionSize": 16, "probeLength": 4, "hashBuildTimeInMicroseconds": 685914, "conflictCount": 0, "failedTransactions": 2022743, "failedTransactionPercentage": 0.0150706, "totalFailedPercentage": 0.0150706, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "htm","rSize": 134217728, "transactionSize": 16, "probeLength": 4, "hashBuildTimeInMicroseconds": 911399, "conflictCount": 0, "failedTransactions": 2338806, "failedTransactionPercentage": 0.0174255, "totalFailedPercentage": 0.0174255, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "htm","rSize": 134217728, "transactionSize": 16, "probeLength": 4, "hashBuildTimeInMicroseconds": 1042555, "conflictCount": 0, "failedTransactions": 2011053, "failedTransactionPercentage": 0.0149835, "totalFailedPercentage": 0.0149835, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "htm","rSize": 134217728, "transactionSize": 16, "probeLength": 4, "hashBuildTimeInMicroseconds": 1107825, "conflictCount": 0, "failedTransactions": 1477796, "failedTransactionPercentage": 0.0110104, "totalFailedPercentage": 0.0110104, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "htm","rSize": 134217728, "transactionSize": 16, "probeLength": 4, "hashBuildTimeInMicroseconds": 1049196, "conflictCount": 0, "failedTransactions": 1449167, "failedTransactionPercentage": 0.0107971, "totalFailedPercentage": 0.0107971, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "htm","rSize": 134217728, "transactionSize": 16, "probeLength": 4, "hashBuildTimeInMicroseconds": 1008722, "conflictCount": 0, "failedTransactions": 1371098, "failedTransactionPercentage": 0.0102155, "totalFailedPercentage": 0.0102155, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "htm","rSize": 134217728, "transactionSize": 16, "probeLength": 4, "hashBuildTimeInMicroseconds": 979432, "conflictCount": 0, "failedTransactions": 1405536, "failedTransactionPercentage": 0.0104721, "totalFailedPercentage": 0.0104721, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "htm","rSize": 134217728, "transactionSize": 16, "probeLength": 4, "hashBuildTimeInMicroseconds": 976940, "conflictCount": 0, "failedTransactions": 1427612, "failedTransactionPercentage": 0.0106365, "totalFailedPercentage": 0.0106365, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "htm","rSize": 134217728, "transactionSize": 16, "probeLength": 4, "hashBuildTimeInMicroseconds": 931107, "conflictCount": 0, "failedTransactions": 1484976, "failedTransactionPercentage": 0.0110639, "totalFailedPercentage": 0.0110639, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "htm","rSize": 134217728, "transactionSize": 16, "probeLength": 4, "hashBuildTimeInMicroseconds": 949040, "conflictCount": 0, "failedTransactions": 1396564, "failedTransactionPercentage": 0.0104052, "totalFailedPercentage": 0.0104052, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
+{"algo": "htm","rSize": 134217728, "transactionSize": 16, "probeLength": 4, "hashBuildTimeInMicroseconds": 939181, "conflictCount": 0, "failedTransactions": 1493168, "failedTransactionPercentage": 0.011125, "totalFailedPercentage": 0.011125, "inputSum": 9007199321849856, "outputSum": 9007199321849856}
