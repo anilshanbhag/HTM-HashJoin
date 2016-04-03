@@ -1,0 +1,224 @@
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Running join algorithm NPO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1221052078 	 768562940 	 0 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+339178.0000 	 134217728 	 9.0975 
+[INFO ] Results = 134217728. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Running join algorithm NPO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1284362202 	 824036090 	 0 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+356765.0000 	 134217728 	 9.5692 
+[INFO ] Results = 134217728. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Running join algorithm NPO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1280903766 	 821409624 	 0 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+355804.0000 	 134217728 	 9.5435 
+[INFO ] Results = 134217728. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Running join algorithm NPO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1252718604 	 793514984 	 0 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+347975.0000 	 134217728 	 9.3335 
+[INFO ] Results = 134217728. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Running join algorithm NPO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1379754378 	 926717694 	 0 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+383262.0000 	 134217728 	 10.2800 
+[INFO ] Results = 134217728. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Running join algorithm NPO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1284811110 	 831809712 	 0 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+356890.0000 	 134217728 	 9.5726 
+[INFO ] Results = 134217728. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Running join algorithm NPO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1309977880 	 857850004 	 0 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+363880.0000 	 134217728 	 9.7601 
+[INFO ] Results = 134217728. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Running join algorithm NPO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1341964184 	 889914890 	 0 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+372765.0000 	 134217728 	 9.9984 
+[INFO ] Results = 134217728. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Running join algorithm NPO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1421742964 	 956576974 	 0 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+394925.0000 	 134217728 	 10.5928 
+[INFO ] Results = 134217728. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Running join algorithm NPO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1822244432 	 1369546020 	 0 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+506176.0000 	 134217728 	 13.5768 
+[INFO ] Results = 134217728. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Running join algorithm NPO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1637324986 	 1175365560 	 0 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+454809.0000 	 134217728 	 12.1990 
+[INFO ] Results = 134217728. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Running join algorithm NPO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1683244932 	 1230857898 	 0 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+467565.0000 	 134217728 	 12.5412 
+[INFO ] Results = 134217728. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Running join algorithm NPO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+1851054394 	 1393437578 	 0 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+514177.0000 	 134217728 	 13.7914 
+[INFO ] Results = 134217728. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Running join algorithm NPO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+2024094790 	 1557358086 	 0 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+562244.0000 	 134217728 	 15.0807 
+[INFO ] Results = 134217728. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Running join algorithm NPO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+3172010068 	 2713412642 	 0 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+881107.0000 	 134217728 	 23.6333 
+[INFO ] Results = 134217728. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Running join algorithm NPO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+3549858544 	 3097189910 	 0 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+986063.0000 	 134217728 	 26.4485 
+[INFO ] Results = 134217728. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Running join algorithm NPO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+5003891844 	 4531736102 	 0 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+1389958.0000 	 134217728 	 37.2819 
+[INFO ] Results = 134217728. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Running join algorithm NPO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+5657641444 	 5205485422 	 0 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+1571554.0000 	 134217728 	 42.1527 
+[INFO ] Results = 134217728. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Running join algorithm NPO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+6080423932 	 5628443870 	 0 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+1688992.0000 	 134217728 	 45.3027 
+[INFO ] Results = 134217728. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Running join algorithm NPO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+6192253956 	 5736287816 	 0 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+1720056.0000 	 134217728 	 46.1359 
+[INFO ] Results = 134217728. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Running join algorithm NPO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+6162229210 	 5710102356 	 0 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+1711716.0000 	 134217728 	 45.9122 
+[INFO ] Results = 134217728. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Running join algorithm NPO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+6132824124 	 5680427624 	 0 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+1703547.0000 	 134217728 	 45.6931 
+[INFO ] Results = 134217728. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Running join algorithm NPO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+6091908072 	 5639601266 	 0 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+1692182.0000 	 134217728 	 45.3883 
+[INFO ] Results = 134217728. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Running join algorithm NPO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+6057981068 	 5599927944 	 0 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+1682758.0000 	 134217728 	 45.1355 
+[INFO ] Results = 134217728. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Running join algorithm NPO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+6106777058 	 5606521236 	 0 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+1696312.0000 	 134217728 	 45.4990 
+[INFO ] Results = 134217728. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Running join algorithm NPO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+6129274618 	 5676331338 	 0 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+1702562.0000 	 134217728 	 45.6667 
+[INFO ] Results = 134217728. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Running join algorithm NPO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+6202951566 	 5750689608 	 0 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+1723027.0000 	 134217728 	 46.2156 
+[INFO ] Results = 134217728. DONE.
+[INFO ] Creating relation R with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Creating relation S with size = 1024.000 MiB, #tuples = 134217728 : OK 
+[INFO ] Running join algorithm NPO ...
+RUNTIME TOTAL, BUILD, PART (cycles): 
+6226655904 	 5774170068 	 0 
+TOTAL-TIME-USECS, TOTAL-TUPLES, CYCLES-PER-TUPLE: 
+1729612.0000 	 134217728 	 46.3922 
+[INFO ] Results = 134217728. DONE.
