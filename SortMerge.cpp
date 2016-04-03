@@ -1,6 +1,5 @@
 #include "SortMerge.hpp"
 #include <tbb/tbb.h>
-#include "Dependencies/smoothsort/smoothsort.h"
 #include "cpp-sort/sort.h"
 #include "cpp-sort/sorters.h"
 using namespace tbb;
