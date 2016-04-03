@@ -21,6 +21,7 @@
 
 #include "NoCCHashBuild.hpp"
 #include "include/DataGen.hpp"
+#include "SortMerge.hpp"
 
 using namespace std;
 using namespace tbb;
@@ -103,6 +104,8 @@ main(int argc, char* argv[]) {
     HTMHashBuild(relR, cmdParams.rSize, relS, cmdParams.rSize, cmdParams.transactionSize, cmdParams.scaleOutput, cmdParams.numPartitions, cmdParams.probeLength);
   else if (cmdParams.algo == "nocc")
     NoCCHashBuild(relR, cmdParams.rSize, relS, cmdParams.rSize, cmdParams.scaleOutput, cmdParams.numPartitions, cmdParams.probeLength);
+  else if (cmdParams.algo == "sortmerge")
+    SortMerge(relR, cmdParams.rSize, relS, cmdParams.rSize, cmdParams.numPartitions);
   else
     cout<<"Unknown Algo: "<<cmdParams.algo<<endl;
 

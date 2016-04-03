@@ -1,3 +1,6 @@
 [submodule "cmake/Modules/FindTBB"]
 	path = cmake/Modules/FindTBB
 	url = https://github.com/justusc/FindTBB.git
+[submodule "Dependencies/cpp-sort"]
+	path = Dependencies/cpp-sort
+	url = https://github.com/Morwenn/cpp-sort.git
