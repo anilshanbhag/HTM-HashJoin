@@ -1,6 +1,7 @@
 #pragma once
 
 #include <tbb/tbb.h>
+#include <algorithm>
 #include <string>
 #include <random>
 using namespace std;
@@ -38,6 +39,35 @@ uint64_t* generate_data(string dist, uint32_t size_in_tuples, uint32_t distinct_
     });*/
     for (int i=0; i<size_in_tuples; i++) {
       input[i] = (rand() & mod_mask) + 1;
+    }
+    sort(input, input + size_in_tuples);
+    bool* shuffled = new bool[size_in_tuples]{false};
+
+    for(size_t i = 0; i < size_in_tuples - 1; i++) {
+      if(!shuffled[i]) {
+        int swap = rand() % min(local_shuffle_range, (int)(size_in_tuples - i));
+        uint64_t temp = input[i];
+        input[i] = input[(i + swap)];
+        input[(i + swap)] = temp;
+        shuffled[(i + swap)] = true;
+      }
+    }
+  } else if (dist == "random") {
+    for (int i=0; i<size_in_tuples; i++) {
+      input[i] = rand();
+      while (input[i] == 0) input[i] = rand();
+    }
+    sort(input, input + size_in_tuples);
+    bool* shuffled = new bool[size_in_tuples]{false};
+
+    for(size_t i = 0; i < size_in_tuples - 1; i++) {
+      if(!shuffled[i]) {
+        int swap = rand() % min(local_shuffle_range, (int)(size_in_tuples - i));
+        uint64_t temp = input[i];
+        input[i] = input[(i + swap)];
+        input[(i + swap)] = temp;
+        shuffled[(i + swap)] = true;
+      }
     }
   } else if (dist == "zipf") {
 /*    rand_val(1);*/

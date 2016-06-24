@@ -1,10 +1,11 @@
 #include "SortMerge.hpp"
 #include <tbb/tbb.h>
+#include <sys/time.h>
 #include "cpp-sort/sort.h"
 #include "cpp-sort/sorters.h"
 using namespace tbb;
 using namespace std;
-void SortMerge(uint32_t* build, uint32_t buildSize, uint32_t* probe, uint32_t probseSize,
+void SortMerge(uint64_t* build, uint32_t buildSize, uint64_t* probe, uint32_t probseSize,
 							 uint32_t numPartitions) {
 	struct timeval beforeSort, afterSort;
 	auto partitions = 64;

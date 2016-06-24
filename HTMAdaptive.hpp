@@ -104,8 +104,8 @@ HTMHashBuild(uint64_t* relR, uint32_t rSize,
                    double failureFraction = (localConflictRangeCount - prevConflictRangeCount);
                    failureFraction /= total;
 
-                   if (failureFraction < 0.004) tSize = tSize > 16 ? 32: tSize * 2;
-                   else if (failureFraction > 0.020) tSize = tSize > 2? tSize / 2: 1;
+                   // if (failureFraction < 0.002) tSize = tSize > 16 ? 32: tSize * 2;
+                   // else if (failureFraction > 0.015) tSize = tSize > 4? tSize / 2: 4;
                  }
                  conflictCounts[localPartitionId] = localConflictCount;
                  conflictRangeCounts[localPartitionId] = localConflictRangeCount;

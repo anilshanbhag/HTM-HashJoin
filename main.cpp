@@ -96,7 +96,13 @@ main(int argc, char* argv[]) {
 
 #if ENABLE_PROBE
   uint64_t* relR = generate_data(cmdParams.dataDistr, cmdParams.rSize, cmdParams.rSize, cmdParams.shuffleRange);
-  uint64_t* relS = generate_data("sorted", cmdParams.rSize, cmdParams.rSize, cmdParams.shuffleRange);
+  uint64_t* relS;
+  if (cmdParams.dataDistr != "random")
+      relS = generate_data("sorted", cmdParams.rSize, cmdParams.rSize, cmdParams.shuffleRange);
+  else {
+    relS = new uint64_t[cmdParams.rSize];
+    for (int i=0; i<cmdParams.rSize; i++) relS[i] = relR[i];
+  }
 
   if (cmdParams.algo == "atomic")
     AtomicHashBuild(relR, cmdParams.rSize, relS, cmdParams.rSize, cmdParams.scaleOutput, cmdParams.numPartitions, cmdParams.probeLength);
