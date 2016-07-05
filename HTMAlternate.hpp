@@ -22,14 +22,14 @@ using namespace tbb;
 
 struct Bucket {
   uint32_t count;
-  uint32_t tuples[5];
-  Bucket* next;
+  uint32_t next_index;
+  uint64_t tuples[3];
 };
 
 void
 HTMHashBuild(uint32_t* relR, uint32_t rSize, uint32_t transactionSize, uint32_t scaleOutput, uint32_t numPartitions,
     uint32_t probeLength) {
-  uint32_t numBuckets = rSize / 4;
+  uint32_t numBuckets = rSize / 2;
   uint32_t inputPartitionSize = rSize / numPartitions;
 
   /* allocate hashtable buckets cache line aligned */
@@ -68,7 +68,7 @@ HTMHashBuild(uint32_t* relR, uint32_t rSize, uint32_t transactionSize, uint32_t 
                    if(status == _XBEGIN_STARTED) {
                      for(size_t i = j; i < j + transactionSize; i++) {
                        uint32_t slot = relR[i] & tableMask;
-                       if (buckets[slot].count != 5) {
+                       if (buckets[slot].count != 3) {
                          buckets[slot].tuples[buckets[slot].count++] = relR[i];
                        }
                      }
@@ -77,13 +77,13 @@ HTMHashBuild(uint32_t* relR, uint32_t rSize, uint32_t transactionSize, uint32_t 
                      conflictRanges[conflictPartitionStart + localConflictRangeCount++] = j;
 #if TM_TRACK
                     if (status == _XABORT_EXPLICIT) b1 += 1;
-                     else if (status == _XABORT_RETRY) b2 += 1;
-                     else if (status == _XABORT_CONFLICT) b3 += 1;
-                     else if (status == _XABORT_CAPACITY) b4 += 1;
-                     else if (status == _XABORT_DEBUG) b5 += 1;
-                     else if (status == _XABORT_NESTED) b6 += 1;
-                     else if (status == _XBEGIN_STARTED) b7 += 1;
-                     else b8 += 1;
+                    else if (status == _XABORT_RETRY) b2 += 1;
+                    else if (status == _XABORT_CONFLICT) b3 += 1;
+                    else if (status == _XABORT_CAPACITY) b4 += 1;
+                    else if (status == _XABORT_DEBUG) b5 += 1;
+                    else if (status == _XABORT_NESTED) b6 += 1;
+                    else if (status == _XBEGIN_STARTED) b7 += 1;
+                    else b8 += 1;
 #endif // TRACK_CONFLICT
                    }
                  }
