@@ -13,7 +13,7 @@
 #include <sys/time.h>
 #include <cstring>
 
-#define TM_TRACK 1
+#include "config.h"
 
 using namespace std;
 using namespace tbb;
@@ -21,33 +21,38 @@ using namespace tbb;
 #define CACHE_LINE_SIZE 32
 
 struct Bucket {
+  uint64_t tuples[3];
   uint32_t count;
   uint32_t next_index;
-  uint64_t tuples[3];
 };
 
 void
-HTMHashBuild(uint32_t* relR, uint32_t rSize, uint32_t transactionSize, uint32_t scaleOutput, uint32_t numPartitions,
+HTMHashBuild(uint64_t* relR, uint32_t rSize, uint32_t transactionSize, uint32_t scaleOutput, uint32_t numPartitions,
     uint32_t probeLength) {
   uint32_t numBuckets = rSize / 2;
   uint32_t inputPartitionSize = rSize / numPartitions;
 
   /* allocate hashtable buckets cache line aligned */
-  Bucket* buckets;
-  if (posix_memalign((void**)&buckets, CACHE_LINE_SIZE,
-                     numBuckets * sizeof(Bucket))){
-      perror("Aligned allocation failed!\n");
-      exit(EXIT_FAILURE);
-  }
+/*  Bucket* buckets;*/
+  //if (posix_memalign((void**)&buckets, CACHE_LINE_SIZE,
+                     //numBuckets * sizeof(Bucket))){
+      //perror("Aligned allocation failed!\n");
+      //exit(EXIT_FAILURE);
+  //}
+
+  Bucket* buckets = new Bucket[numBuckets]{};
   memset(buckets, 0, numBuckets * sizeof(Bucket));
 
-  cout<<sizeof(Bucket)<<endl;
+  int tCount = 0;
+  for (int i=0; i<numBuckets; i++) {
+    tCount += buckets[i].count;
+  }
 
   uint32_t* conflictRanges = new uint32_t[rSize];
   uint32_t* conflictRangeCounts = new uint32_t[numPartitions];
 
 #if TM_TRACK
-  tbb::atomic<int> b1=0,b2=0,b3=0,b4=0,b5=0,b6=0,b7=0, b8=0;
+  tbb::atomic<int> b1=0,b2=0,b3=0,b4=0,b5=0,b6=0,b7=0;
 #endif // TM_TRACK
 
   struct timeval before, after;
@@ -57,7 +62,7 @@ HTMHashBuild(uint32_t* relR, uint32_t rSize, uint32_t transactionSize, uint32_t 
   parallel_for(blocked_range<size_t>(0, rSize, inputPartitionSize),
                [buckets, tableMask, transactionSize, inputPartitionSize,
 #if TM_TRACK
-                &b1, &b2, &b3, &b4, &b5, &b6, &b7, &b8,
+                &b1, &b2, &b3, &b4, &b5, &b6, &b7,
 #endif
                 relR, conflictRanges, conflictRangeCounts](const auto range) {
                  uint32_t localConflictRangeCount = 0;
@@ -67,23 +72,23 @@ HTMHashBuild(uint32_t* relR, uint32_t rSize, uint32_t transactionSize, uint32_t 
                    auto status = _xbegin();
                    if(status == _XBEGIN_STARTED) {
                      for(size_t i = j; i < j + transactionSize; i++) {
-                       uint32_t slot = relR[i] & tableMask;
+                       uint32_t slot = (relR[i]/2) & tableMask;
                        if (buckets[slot].count != 3) {
                          buckets[slot].tuples[buckets[slot].count++] = relR[i];
                        }
+                       // buckets[slot].tuples[0] = relR[i];
                      }
                      _xend();
                    } else {
                      conflictRanges[conflictPartitionStart + localConflictRangeCount++] = j;
 #if TM_TRACK
-                    if (status == _XABORT_EXPLICIT) b1 += 1;
-                    else if (status == _XABORT_RETRY) b2 += 1;
-                    else if (status == _XABORT_CONFLICT) b3 += 1;
-                    else if (status == _XABORT_CAPACITY) b4 += 1;
-                    else if (status == _XABORT_DEBUG) b5 += 1;
-                    else if (status == _XABORT_NESTED) b6 += 1;
-                    else if (status == _XBEGIN_STARTED) b7 += 1;
-                    else b8 += 1;
+                    if (status & _XABORT_EXPLICIT) b1 += 1;
+                    if (status & _XABORT_RETRY) b2 += 1;
+                    if (status & _XABORT_CONFLICT) b3 += 1;
+                    if (status & _XABORT_CAPACITY) b4 += 1;
+                    if (status & _XABORT_DEBUG) b5 += 1;
+                    if (status & _XABORT_NESTED) b6 += 1;
+                    if (! (status & 0x3f)) b7 += 1;
 #endif // TRACK_CONFLICT
                    }
                  }
@@ -157,10 +162,10 @@ HTMHashBuild(uint32_t* relR, uint32_t rSize, uint32_t transactionSize, uint32_t 
   cout << "}" << endl;
 
 #if TM_TRACK
-  printf("Conflict Reason: %d %d %d %d %d %d %d %d\n", b1, b2, b3, b4, b5, b6, b7, b8);
+  printf("Conflict Reason: %d %d %d %d %d %d %d %d\n", b1, b2, b3, b4, b5, b6, b7);
 #endif //TM_TRACK
 
-  free(buckets);
+  // free(buckets);
   // delete[] conflicts;
   // delete[] conflictCounts;
   delete[] conflictRanges;

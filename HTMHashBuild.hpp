@@ -73,6 +73,8 @@ HTMHashBuild(uint64_t* relR, uint32_t rSize,
   }
   memset(buckets, 0, numBuckets * sizeof(Bucket));
 
+  cout<<"IN HERE"<<endl;
+
 #if ENABLE_PROBE
   uint32_t* matchCounter = new uint32_t[numPartitions];
 #endif // ENABLE_PROBE
@@ -297,6 +299,11 @@ HTMHashBuild(uint64_t* relR, uint32_t rSize,
         return init;
       },
       [](auto a, auto b) { return a + b; });
+
+  int conflictCount = 0;
+  for(int i = 0; i < numPartitions; i++) {
+    conflictCount += conflictCounts[i];
+  }
 
   int conflictRangeCount = 0;
   for(int i = 0; i < numPartitions; i++) {
