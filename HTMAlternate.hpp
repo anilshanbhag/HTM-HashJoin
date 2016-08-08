@@ -72,7 +72,7 @@ HTMHashBuild(uint64_t* relR, uint32_t rSize, uint32_t transactionSize, uint32_t 
                    auto status = _xbegin();
                    if(status == _XBEGIN_STARTED) {
                      for(size_t i = j; i < j + transactionSize; i++) {
-                       uint32_t slot = (relR[i]/2) & tableMask;
+                       uint32_t slot = (relR[i]/3) & tableMask;
                        if (buckets[slot].count != 3) {
                          buckets[slot].tuples[buckets[slot].count++] = relR[i];
                        }
