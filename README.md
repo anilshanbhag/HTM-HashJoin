@@ -2,9 +2,10 @@ HTM Hash Join
 =====================
 
 Implements an adaptive multi-core hash join based on hardware transactional memory (HTM-Adaptive).
-The join does 3x better than a radix join (PRJ) on data with locality and with low-overhead switches to radix join in the absence of locality. 
 
-[[https://github.com/anilshanbhag/HTMHashJoin/blob/master/imgs/perf.png|alt=HashJoinPerf]]
+The join does > 2x better than a radix join (PRJ) on data with locality and with low-overhead switches to radix join in the absence of locality. 
+
+![Hash Join Performance](/figs/perf.png)
 
 For details, see paper [link](http://anilshanbhag.in/static/papers/HTM_imdm16.pdf)
 
